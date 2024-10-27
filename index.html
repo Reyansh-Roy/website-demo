@@ -5,135 +5,89 @@
   data-wf-page="670a096c71af692d8b9ecd66"
   data-wf-site="670a096c71af692d8b9ecd68"
 >
-<head>
-  <meta charset="utf-8" />
-  <title>@penseeweb</title>
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <meta content="Webflow" name="generator" />
-  <link
-    href="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/css/pensees-stellar-site-6ad3-0d16ce02f45ce.webflow.24cf3bb62.css"
-    rel="stylesheet"
-    type="text/css"
-  />
-  <!-- Add these new scripts and styles -->
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script src="https://www.google.com/recaptcha/api.js"></script>
-  <!-- Config variables -->
-  <script>
-    const SUPABASE_URL = 'https://rgccooiyalkqiugaxzbk.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnY2Nvb2l5YWxrcWl1Z2F4emJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk5NjIzNzgsImV4cCI6MjA0NTUzODM3OH0.JomIxLPTFnGoxDf7WXpg41Vb9M-RKeZJ4oowSstaWT0';
-    const GEMINI_API_KEY = 'AIzaSyB0IW0bJ3qPdvAJKHK3GJc3IWHPH4VRdbM';
-
-    // Add the closeEmailModal function here
-    function closeEmailModal() {
-      document.getElementById('emailModal').classList.remove('active');
-    }
-</script>
+  <head>
+    <!-- Add these right before </head> -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <style>
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  .modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .captcha-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  .error-message {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    visibility: hidden;
+  }
+  .error-message.visible {
+    visibility: visible;
+  }
+  .success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .success-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+  }
+  .checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 1rem;
+    background-color: #4CAF50;
+    padding: 1rem;
+  }
+  .checkmark::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 50px;
+    border: solid white;
+    border-width: 0 5px 5px 0;
+    transform: rotate(45deg);
+    margin: 0 auto;
+  }
+  .countdown {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+  }
+</style>
 
-
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-    }
-    .modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 500px;
-      width: 90%;
-      position: relative;
-    }
-    .modal-close {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      cursor: pointer;
-      font-size: 1.5rem;
-    }
-    .captcha-container {
-      display: flex;
-      justify-content: center;
-      margin: 1rem 0;
-    }
-    .error-message {
-      color: #dc2626;
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
-      text-align: center;
-      visibility: hidden;
-    }
-    .error-message.visible {
-      visibility: visible;
-    }
-    .success-modal {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-      max-width: 400px;
-    }
-    .countdown {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 1rem 0;
-    }
-    .fade-in {
-      opacity: 0;
-      transition: opacity 0.3s ease-in;
-    }
-    .fade-in.show {
-      opacity: 1;
-    }
-    .loading-spinner {
-      display: none;
-      width: 40px;
-      height: 40px;
-      margin: 20px auto;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .loading-spinner.show {
-      display: block;
-    }
-  </style>
-  <script type="text/javascript">
-    !(function (o, c) {
-      var n = c.documentElement,
-        t = " w-mod-";
-      (n.className += t + "js"),
-        ("ontouchstart" in o ||
-          (o.DocumentTouch && c instanceof DocumentTouch)) &&
-          (n.className += t + "touch");
-    })(window, document);
-  </script>
-  <link
-    href="https://cdn.prod.website-files.com/img/favicon.ico"
-    rel="shortcut icon"
-    type="image/x-icon"
-  />
-  <link
-    href="https://cdn.prod.website-files.com/6709727f720bcdcb6a582cc6/6709727f720bcdcb6a582d25_musemind-loog.png"
-    rel="apple-touch-icon"
-  />
-</head>
+  </head>
   <body>
     <section class="banner-area overflow-hidden section-paddiing">
       <section class="navigation-wrap">
@@ -685,7 +639,7 @@
               loading="lazy"
               data-w-id="083b45de-fdab-a2b9-fb2e-b0555347730c"
               alt="ai bot icon
-  "
+	"
               class="ai-bot"
             />
           </div>
@@ -1938,75 +1892,99 @@
       </div>
     </section>
     <section class="call-to-action-area overflow-hidden">
-      <div class="container">
-        <div id="mindmap-generator" class="cta-content-wrapper">
-          <div class="cta-content">
-            <h2 class="cta-title">Experience the Power of AI Mindmapping</h2>
-            <div class="connect-form-block">
-              <form id="linkForm" class="connect-form">
-                <div class="relative">
-                  <input 
-                    type="url" 
-                    id="youtubeLink"
-                    class="text-field w-input"
-                    placeholder="Enter YouTube Link"
-                    required
-                  />
-                  <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
-                </div>
-                
-                <div class="captcha-container">
-                  <div class="g-recaptcha" 
-                    data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U"
-                    data-callback="onCaptchaVerified"
-                    data-expired-callback="onCaptchaExpired">
-                  </div>
-                </div>
-                <div id="captchaError" class="error-message text-center">Please verify that you are not a robot</div>
-                
-                <input 
-                  type="submit" 
-                  id="generateButton"
-                  class="submit-button w-button"
-                  value="Generate Now"
-                  disabled
-                />
-              </form>
+  <div class="container">
+    <div id="mindmap-generator" class="cta-content-wrapper">
+      <div class="cta-content">
+        <h2 class="cta-title">Experience the Power of AI Mindmapping</h2>
+        
+        <!-- New Form -->
+        <form id="linkForm" class="connect-form">
+          <div class="relative">
+            <input 
+              type="url" 
+              id="youtubeLink"
+              class="text-field w-input"
+              placeholder="Enter YouTube Link"
+              required
+            />
+            <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
+          </div>
+          
+          <div class="captcha-container">
+            <div class="g-recaptcha" 
+              data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U"
+              data-callback="onCaptchaVerified"
+              data-expired-callback="onCaptchaExpired">
             </div>
-            <div class="cta-items-wrapper">
-              <div class="cta-single-item">
-                <img
-                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
-                  loading="lazy"
-                  alt="verify icon"
-                  class="check-icon"
-                />
-                <div class="cta-item-text">Unlimited Free Mindmaps</div>
-              </div>
-              <div class="cta-single-item">
-                <img
-                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
-                  loading="lazy"
-                  alt="verify icon"
-                  class="check-icon"
-                />
-                <div class="cta-item-text">No Credit card needed</div>
-              </div>
-              <div class="cta-single-item">
-                <img
-                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
-                  loading="lazy"
-                  alt="verify icon"
-                  class="check-icon"
-                />
-                <div class="cta-item-text">YouTube Video Integration</div>
-              </div>
-            </div>
+          </div>
+          <div id="captchaError" class="error-message">Please verify that you are not a robot</div>
+          
+          <button 
+            type="submit" 
+            id="generateButton"
+            class="submit-button w-button"
+            disabled
+          >
+            Generate Now
+          </button>
+        </form>
+
+        <div class="cta-items-wrapper">
+          <div class="cta-single-item">
+            <img src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png" loading="lazy" alt="verify icon" class="check-icon"/>
+            <div class="cta-item-text">Unlimited Free Mindmaps!</div>
+          </div>
+          <div class="cta-single-item">
+            <img src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png" loading="lazy" alt="verify icon" class="check-icon"/>
+            <div class="cta-item-text">No Credit card needed</div>
+          </div>
+          <div class="cta-single-item">
+            <img src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png" loading="lazy" alt="verify icon" class="check-icon"/>
+            <div class="cta-item-text">YouTube Video Integration</div>
           </div>
         </div>
       </div>
-    </section>
-    <section class="footer-area overflow-hidden">
+    </div>
+  </div>
+
+  <!-- Email Modal -->
+  <div id="emailModal" class="modal">
+    <div class="bg-white p-8 rounded-2xl max-w-md w-full mx-4">
+      <h2 class="text-2xl font-bold mb-4 text-purple-700">Enter Your Email</h2>
+      <form id="emailForm">
+        <input
+          type="email"
+          id="emailInput"
+          class="text-field w-input"
+          placeholder="Your email address"
+          required
+        />
+        <div id="emailError" class="error-message"></div>
+        <button type="submit" class="submit-button w-button">
+          Submit
+        </button>
+        <button type="button" id="closeModal" class="submit-button w-button" style="background: #e5e7eb; color: #374151; margin-top: 8px;">
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="success-modal">
+    <div class="success-content">
+      <div class="checkmark"></div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Success!</h2>
+      <p class="text-gray-600 mb-4">Thank you for using our AI Mindmap Generator!</p>
+      <p class="text-gray-600 mb-6">Your mindmap is being generated and will be sent to your email shortly. Please check your inbox (and spam folder) in the next few minutes.</p>
+      <div class="countdown" id="countdown">
+        Redirecting to homepage in <span id="timer">10</span> seconds...
+      </div>
+    </div>
+  </div>
+</section>
+
+   <section class="footer-area overflow-hidden">
       <div class="container">
         <div class="footer-social-wrapper">
           <div
@@ -2209,48 +2187,11 @@
       src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/js/webflow.88f8032a2.js"
       type="text/javascript"
     ></script>
-    <!-- Modals -->
-<div id="emailModal" class="modal">
-  <div class="modal-content">
-    <span class="modal-close" onclick="closeEmailModal()">&times;</span>
-    <h2>Almost there!</h2>
-    <p>Enter your email to receive your mindmap</p>
-    <form id="emailForm" class="connect-form">
-      <input 
-        type="email" 
-        id="userEmail"
-        class="text-field w-input"
-        placeholder="Your email address"
-        required
-      />
-      <div class="loading-spinner"></div>
-      <input 
-        type="submit" 
-        class="submit-button w-button"
-        value="Send My Mindmap"
-      />
-    </form>
-  </div>
-</div>
-
-<!-- Success Modal -->
-<div id="successModal" class="modal">
-  <div class="success-modal fade-in">
-    <h2>Your mindmap is being generated!</h2>
-    <p>Please wait while we process your request</p>
-    <div class="countdown" id="countdown">15</div>
-    <p>You'll receive your mindmap via email shortly</p>
-  </div>
-</div>
-
-<!-- JavaScript -->
+<!-- Add this right before </body> -->
 <script>
   // Global variables
   let isCaptchaVerified = false;
   let isValidUrl = false;
-
-  // Initialize Supabase client
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // reCAPTCHA callback functions
   function onCaptchaVerified() {
@@ -2261,134 +2202,148 @@
 
   function onCaptchaExpired() {
     isCaptchaVerified = false;
+    document.getElementById('captchaError').classList.add('visible');
     updateGenerateButton();
   }
 
   function updateGenerateButton() {
     const generateButton = document.getElementById('generateButton');
-    generateButton.disabled = !(isValidUrl && isCaptchaVerified);
-  }
-
-  // Extract YouTube video ID
-  function extractVideoId(url) {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
+    generateButton.disabled = !(isCaptchaVerified && isValidUrl);
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    // Supabase configuration
+    const supabaseUrl = 'https://rgccooiyalkqiugaxzbk.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnY2Nvb2l5YWxrcWl1Z2F4emJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk5NjIzNzgsImV4cCI6MjA0NTUzODM3OH0.JomIxLPTFnGoxDf7WXpg41Vb9M-RKeZJ4oowSstaWT0';
+    const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    // Form elements
     const linkForm = document.getElementById('linkForm');
-    const youtubeLinkInput = document.getElementById('youtubeLink');
     const emailModal = document.getElementById('emailModal');
-    const successModal = document.getElementById('successModal');
     const emailForm = document.getElementById('emailForm');
-    const loadingSpinner = document.querySelector('.loading-spinner');
+    const closeModal = document.getElementById('closeModal');
+    const youtubeLinkInput = document.getElementById('youtubeLink');
+    const youtubeLinkError = document.getElementById('youtubeLinkError');
 
     // YouTube URL validation
-    youtubeLinkInput.addEventListener('input', function() {
-      const youtubeUrl = this.value;
-      const videoId = extractVideoId(youtubeUrl);
-      isValidUrl = videoId !== null;
-      
-      const errorElement = document.getElementById('youtubeLinkError');
-      if (!isValidUrl && youtubeUrl) {
-        errorElement.classList.add('visible');
-      } else {
-        errorElement.classList.remove('visible');
+    function isValidYouTubeUrl(url) {
+      try {
+        const urlObj = new URL(url);
+        if (urlObj.hostname === 'youtu.be') {
+          return urlObj.pathname.length > 1;
+        }
+        if (urlObj.hostname === 'youtube.com' || urlObj.hostname === 'www.youtube.com') {
+          const videoId = urlObj.searchParams.get('v');
+          return !!videoId;
+        }
+        return false;
+      } catch (e) {
+        return false;
       }
-      
+    }
+
+    // Event listeners
+    youtubeLinkInput.addEventListener('input', function() {
+      isValidUrl = isValidYouTubeUrl(this.value);
+      if (isValidUrl) {
+        youtubeLinkError.classList.remove('visible');
+        this.classList.remove('border-red-500');
+      } else {
+        youtubeLinkError.classList.add('visible');
+        this.classList.add('border-red-500');
+      }
       updateGenerateButton();
     });
 
-    // Form submission
-    linkForm.addEventListener('submit', function(e) {
+    linkForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+      
       if (!isCaptchaVerified) {
         document.getElementById('captchaError').classList.add('visible');
         return;
       }
+
+      if (!isValidUrl) {
+        youtubeLinkError.classList.add('visible');
+        return;
+      }
+
       emailModal.classList.add('active');
     });
 
-    // Email form submission
+    closeModal.addEventListener('click', function() {
+      emailModal.classList.remove('active');
+      grecaptcha.reset();
+      isCaptchaVerified = false;
+      updateGenerateButton();
+    });
+
     emailForm.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const email = document.getElementById('userEmail').value;
-      const youtubeUrl = youtubeLinkInput.value;
-      const videoId = extractVideoId(youtubeUrl);
-
-      loadingSpinner.classList.add('show');
-
+      const email = document.getElementById('emailInput').value;
+      const youtubeLink = youtubeLinkInput.value;
+      
       try {
-        // First, insert the request into Supabase
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
           .from('mindmap_requests')
-          .insert([
-            { 
-              email: email, 
-              youtube_url: youtubeUrl,
-              video_id: videoId,
-              status: 'pending'
-            }
-          ])
-          .select();
+          .insert([{ 
+            email: email,
+            youtube_link: youtubeLink,
+            status: 'pending'
+          }]);
 
         if (error) throw error;
 
-        // Call your backend API to trigger the mindmap generation
-                // Call your backend API to trigger the mindmap generation
-                const response = await fetch('/api/generate-mindmap', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            requestId: data[0].id,
-            videoId: videoId,
-            email: email
-          })
-        });
-
-        if (!response.ok) throw new Error('Failed to initiate mindmap generation');
-
+        // Hide email modal
         emailModal.classList.remove('active');
-        successModal.classList.add('active');
-        startCountdown();
+        
+        // Show success modal
+        const successModal = document.getElementById('successModal');
+        successModal.style.display = 'flex';
+        
+        // Start countdown
+        let timeLeft = 10;
+        const timerElement = document.getElementById('timer');
+        const countdownInterval = setInterval(() => {
+          timeLeft--;
+          timerElement.textContent = timeLeft;
+          
+          if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            window.location.href = 'https://penseeweb.site';
+          }
+        }, 1000);
+
+        // Reset forms
+        emailForm.reset();
+        linkForm.reset();
+        grecaptcha.reset();
+        isCaptchaVerified = false;
+        isValidUrl = false;
+        updateGenerateButton();
       } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-      } finally {
-        loadingSpinner.classList.remove('show');
+        alert('There was an error submitting your request. Please try again.');
       }
     });
 
-    // Countdown functionality
-    function startCountdown() {
-      let count = 15;
-      const countdownElement = document.getElementById('countdown');
-      
-      const interval = setInterval(() => {
-        count--;
-        countdownElement.textContent = count;
-        
-        if (count <= 0) {
-          clearInterval(interval);
-          successModal.classList.remove('active');
-          resetForms();
-        }
-      }, 1000);
-    }
+    // Modal click outside handlers
+    document.getElementById('successModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+        window.location.href = 'https://penseeweb.site';
+      }
+    });
 
-    // Reset forms
-    function resetForms() {
-      linkForm.reset();
-      emailForm.reset();
-      grecaptcha.reset();
-      isCaptchaVerified = false;
-      isValidUrl = false;
-      updateGenerateButton();
-    }
+    emailModal.addEventListener('click', function(e) {
+      if (e.target === emailModal) {
+        emailModal.classList.remove('active');
+        grecaptcha.reset();
+        isCaptchaVerified = false;
+        updateGenerateButton();
+      }
+    });
   });
 </script>
-</body>
+  </body>
 </html>
