@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Mindmap Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <!-- Add reCAPTCHA v2 Checkbox script -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Center the reCAPTCHA */
+    .captcha-container {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container min-h-screen bg-gradient-to-b from-purple-400 to-purple-600">
+    <div class="max-w-2xl mx-auto pt-20 p-8">
+      <div class="bg-white rounded-3xl shadow-xl p-8">
+        <h1 class="text-4xl font-bold mb-6 text-purple-700 text-center">AI Mindmap Generator</h1>
+        
+        <form id="linkForm" class="mb-6">
+          <input 
+            type="url" 
+            id="youtubeLink"
+            class="w-full px-4 py-3 rounded-full border-2 border-purple-300 focus:outline-none focus:border-purple-500"
+            placeholder="Enter YouTube Link"
+            required
+          />
+          
+          <!-- Centered CAPTCHA container with your site key -->
+          <div class="captcha-container">
+            <div class="g-recaptcha" data-sitekey="6LcBZWOqAAAAAP8zeYrY7LTKPG6Mvu090RR116pG"></div>
+          </div>
+          
+          <button type="submit" class="w-full mt-4 bg-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-700 transition duration-300">
+            Generate Now
+          </button>
+        </form>
+        
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div class="p-4 bg-purple-50 rounded-xl">
+            <h3 class="font-semibold text-purple-700">Unlimited Free Mindmaps!</h3>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-xl">
+            <h3 class="font-semibold text-purple-700">No Credit Card Needed</h3>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-xl">
+            <h3 class="font-semibold text-purple-700">YouTube Integration</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Modal -->
+  <div id="emailModal" class="modal">
+    <div class="bg-white p-8 rounded-2xl max-w-md w-full mx-4">
+      <h2 class="text-2xl font-bold mb-4 text-purple-700">Enter Your Email</h2>
+      <form id="emailForm">
+        <input
+          type="email"
+          id="emailInput"
+          class="w-full px-4 py-2 mb-4 border-2 rounded-full text-purple-900 focus:outline-none focus:border-purple-500"
+          placeholder="Your email address"
+          required
+        />
+        <button type="submit" class="w-full bg-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-purple-700 transition duration-300">
+          Submit
+        </button>
+        <button type="button" id="closeModal" class="w-full mt-2 bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-semibold hover:bg-gray-300 transition duration-300">
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const supabaseUrl = 'https://rgccooiyalkqiugaxzbk.supabase.co';
+      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnY2Nvb2l5YWxrcWl1Z2F4emJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk5NjIzNzgsImV4cCI6MjA0NTUzODM3OH0.JomIxLPTFnGoxDf7WXpg41Vb9M-RKeZJ4oowSstaWT0';
+      const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+      const linkForm = document.getElementById('linkForm');
+      const emailModal = document.getElementById('emailModal');
+      const emailForm = document.getElementById('emailForm');
+      const closeModal = document.getElementById('closeModal');
+      const youtubeLinkInput = document.getElementById('youtubeLink');
+      const emailInput = document.getElementById('emailInput');
+
+      linkForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Verify reCAPTCHA
+        const captchaResponse = grecaptcha.getResponse();
+        if (!captchaResponse) {
+          alert('Please verify that you are not a robot');
+          return;
+        }
+
+        const youtubeLink = youtubeLinkInput.value;
+        if (youtubeLink) {
+          emailModal.classList.add('active');
+        }
+      });
+
+      closeModal.addEventListener('click', function() {
+        emailModal.classList.remove('active');
+        // Reset the CAPTCHA when modal is closed
+        grecaptcha.reset();
+      });
+
+      emailForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = emailInput.value;
+        const youtubeLink = youtubeLinkInput.value;
+        
+        try {
+          const { data, error } = await supabaseClient
+            .from('mindmap_requests')
+            .insert([
+              { 
+                email: email,
+                youtube_link: youtubeLink,
+                status: 'pending'
+              }
+            ]);
+
+          if (error) throw error;
+
+          alert('Thank you! Your mindmap will be generated and sent to your email.');
+          
+          // Clear forms and close modal
+          emailForm.reset();
+          linkForm.reset();
+          emailModal.classList.remove('active');
+          // Reset CAPTCHA after successful submission
+          grecaptcha.reset();
+        } catch (error) {
+          console.error('Error:', error);
+          alert('There was an error submitting your request. Please try again.');
+        }
+      });
+
+      emailModal.addEventListener('click', function(e) {
+        if (e.target === emailModal) {
+          emailModal.classList.remove('active');
+          // Reset CAPTCHA when modal is closed by clicking outside
+          grecaptcha.reset();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
