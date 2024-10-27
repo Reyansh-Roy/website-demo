@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Sun Oct 27 2024 08:25:32 GMT+0000 (Coordinated Universal Time) -->
+<html
+  data-wf-domain="pensees-stellar-site-6ad3-0d16ce02f45ce.webflow.io"
+  data-wf-page="670a096c71af692d8b9ecd66"
+  data-wf-site="670a096c71af692d8b9ecd68"
+>
+<head>
+  <meta charset="utf-8" />
+  <title>@penseeweb</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="Webflow" name="generator" />
+  <link
+    href="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/css/pensees-stellar-site-6ad3-0d16ce02f45ce.webflow.24cf3bb62.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <!-- Add these new scripts and styles -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <!-- Config variables -->
+  <script>
+    const SUPABASE_URL = 'https://rgccooiyalkqiugaxzbk.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnY2Nvb2l5YWxrcWl1Z2F4emJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk5NjIzNzgsImV4cCI6MjA0NTUzODM3OH0.JomIxLPTFnGoxDf7WXpg41Vb9M-RKeZJ4oowSstaWT0';
+    const GEMINI_API_KEY = 'AIzaSyB0IW0bJ3qPdvAJKHK3GJc3IWHPH4VRdbM';
+
+    // Add the closeEmailModal function here
+    function closeEmailModal() {
+      document.getElementById('emailModal').classList.remove('active');
+    }
+</script>
+<style>
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    .captcha-container {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .error-message {
+      color: #dc2626;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      text-align: center;
+      visibility: hidden;
+    }
+    .error-message.visible {
+      visibility: visible;
+    }
+    .success-modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 400px;
+    }
+    .countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+    .fade-in.show {
+      opacity: 1;
+    }
+    .loading-spinner {
+      display: none;
+      width: 40px;
+      height: 40px;
+      margin: 20px auto;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-spinner.show {
+      display: block;
+    }
+  </style>
+  <script type="text/javascript">
+    !(function (o, c) {
+      var n = c.documentElement,
+        t = " w-mod-";
+      (n.className += t + "js"),
+        ("ontouchstart" in o ||
+          (o.DocumentTouch && c instanceof DocumentTouch)) &&
+          (n.className += t + "touch");
+    })(window, document);
+  </script>
+  <link
+    href="https://cdn.prod.website-files.com/img/favicon.ico"
+    rel="shortcut icon"
+    type="image/x-icon"
+  />
+  <link
+    href="https://cdn.prod.website-files.com/6709727f720bcdcb6a582cc6/6709727f720bcdcb6a582d25_musemind-loog.png"
+    rel="apple-touch-icon"
+  />
+</head>
+  <body>
+    <section class="banner-area overflow-hidden section-paddiing">
+      <section class="navigation-wrap">
+        <div
+          data-animation="default"
+          data-collapse="medium"
+          data-duration="400"
+          data-easing="ease"
+          data-easing2="ease"
+          role="banner"
+          class="navbar-container w-nav"
+        >
+          <div class="container">
+            <div
+              data-w-id="351ee1ae-3d70-c1c4-a541-389bccb03835"
+              style="
+                -webkit-transform: translate3d(0, -100px, 0) scale3d(1, 1, 1)
+                  rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                -moz-transform: translate3d(0, -100px, 0) scale3d(1, 1, 1)
+                  rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                -ms-transform: translate3d(0, -100px, 0) scale3d(1, 1, 1)
+                  rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                transform: translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0)
+                  rotateY(0) rotateZ(0) skew(0, 0);
+              "
+              class="navbar-wrapper"
+            >
+              <a
+                href="https://www.instagram.com/penseeweb"
+                class="navbar-brand w-nav-brand"
+                ><img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2.png"
+                  loading="lazy"
+                  width="138"
+                  height="50"
+                  alt=""
+                  srcset="
+                    https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-500.png   500w,
+                    https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-800.png   800w,
+                    https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-1080.png 1080w,
+                    https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-1600.png 1600w,
+                    https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-2000.png 2000w,
+                    https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2.png        2365w
+                  "
+                  sizes="(max-width: 767px) 120px, 138px"
+                  class="logo-iimage"
+              /></a>
+              <nav role="navigation" class="nav-menu-wrapper w-nav-menu">
+                <ul role="list" class="nav-menu-two w-list-unstyled">
+                  <li>
+                    <a href="#features-mindmap" class="nav-link">Features</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://form.jotform.com/242861442424050"
+                      target="_blank"
+                      class="nav-link"
+                      >Custom Mindmap<br
+                    /></a>
+                  </li>
+                  <li>
+                    <a href="#howitworks-mindmap" class="nav-link"
+                      >How it works</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#pricing-mindmap" class="nav-link">Pricing</a>
+                  </li>
+                </ul>
+                <div class="nav-right-content mobile">
+                  <a href="#" class="login-wrap w-inline-block"
+                    ><div class="login-text">Log in</div></a
+                  >
+                  <div
+                    data-w-id="42ec2b13-b47e-93a3-5c39-a7d59f1464ac"
+                    class="btn-wrapper"
+                  >
+                    <a href="#" class="nav-button w-inline-block"
+                      ><div
+                        style="
+                          -webkit-transform: translate3d(-100%, 0, 0)
+                            scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                            skew(0, 0);
+                          -moz-transform: translate3d(-100%, 0, 0)
+                            scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                            skew(0, 0);
+                          -ms-transform: translate3d(-100%, 0, 0)
+                            scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                            skew(0, 0);
+                          transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                            rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                        "
+                        class="button-bg-block"
+                      ></div>
+                      <div class="button-content">
+                        <div class="button-text">Try it free</div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </nav>
+              <div class="nav-right-content">
+                <div
+                  data-w-id="9fe6cbf3-058e-d822-8b99-ffe5f0a59ca4"
+                  class="btn-wrapper"
+                >
+                  <a href="#mindmap-generator" class="nav-button w-inline-block"
+                    ><div
+                      style="
+                        -webkit-transform: translate3d(-100%, 0, 0)
+                          scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                          skew(0, 0);
+                        -moz-transform: translate3d(-100%, 0, 0)
+                          scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                          skew(0, 0);
+                        -ms-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                          rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                        transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                          rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      "
+                      class="button-bg-block"
+                    ></div>
+                    <div class="button-content">
+                      <div class="button-text">Generate Now</div>
+                    </div></a
+                  >
+                </div>
+              </div>
+              <div class="menu-button w-nav-button">
+                <div class="icon w-icon-nav-menu"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="container">
+        <div class="banner-inner-wrap">
+          <div class="banner-orbit-wrap">
+            <div class="orbit-outer-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8f_border-outer.png"
+                loading="lazy"
+                sizes="(max-width: 767px) 100vw, (max-width: 991px) 96vw, (max-width: 1439px) 97vw, 1276px"
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8f_border-outer-p-500.png   500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8f_border-outer-p-800.png   800w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8f_border-outer-p-1080.png 1080w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8f_border-outer.png        1276w
+                "
+                alt="gradient border"
+                class="outer-circle"
+              /><img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd88_orbit-03.svg"
+                loading="lazy"
+                alt="plus icon"
+                class="outer-circle-logo plus-logo"
+              />
+            </div>
+            <div class="orbit-mid-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd7c_border-mid.png"
+                loading="lazy"
+                sizes="(max-width: 767px) 100vw, (max-width: 991px) 76vw, (max-width: 1439px) 71vw, 944.234375px"
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd7c_border-mid-p-500.png 500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd7c_border-mid-p-800.png 800w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd7c_border-mid.png       958w
+                "
+                alt="gradient border"
+                class="mid-circle"
+              /><img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdb4_uff.png"
+                loading="lazy"
+                alt="paper plane"
+                class="mid-circle-logo pp"
+              /><img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd89_orbit-04.svg"
+                loading="lazy"
+                alt="sticky notes icon"
+                class="mid-circle-logo sn"
+              /><img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8a_orbit-05.svg"
+                loading="lazy"
+                alt="email icon"
+                class="mid-circle-logo email"
+              /><img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8c_orbit-02.svg"
+                loading="lazy"
+                alt="pen icon"
+                class="mid-circle-logo pen"
+              />
+            </div>
+            <div class="orbit-inner-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc3_halft.png"
+                loading="lazy"
+                sizes="(max-width: 991px) 100vw, (max-width: 1439px) 97vw, 1276px"
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc3_halft-p-500.png   500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc3_halft-p-800.png   800w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc3_halft-p-1080.png 1080w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc3_halft.png        1315w
+                "
+                alt="circle"
+                class="inner-circle"
+              />
+            </div>
+          </div>
+          <div class="banner-content">
+            <div class="banner-title-wrap">
+              <h1
+                data-w-id="fdecea02-e553-f69c-97db-36fbb821b685"
+                style="
+                  -webkit-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -moz-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -ms-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                "
+                class="banner-title"
+              >
+                The Ultimate
+              </h1>
+            </div>
+            <div class="banner-title-wrap">
+              <h1
+                data-w-id="c18ba889-92f2-7010-64a1-d89dd63fcdd0"
+                style="
+                  -webkit-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -moz-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -ms-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                "
+                class="banner-title"
+              >
+                <span class="banner-title-extra-color">Ai Mindmap</span>
+              </h1>
+            </div>
+            <div class="banner-title-wrap _2nd">
+              <h1
+                data-w-id="c446eaed-f110-19e4-b1d4-a289e5edba62"
+                style="
+                  -webkit-transform: translate3d(0, 105px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -moz-transform: translate3d(0, 105px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -ms-transform: translate3d(0, 105px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  transform: translate3d(0, 105px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                "
+                class="banner-title"
+              >
+                Generator
+              </h1>
+            </div>
+            <p
+              data-w-id="3418c78c-1680-a45f-1337-9737a753a9aa"
+              style="
+                -webkit-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                  rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                -moz-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                  rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                -ms-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                  rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                transform: translate3d(0, 100px, 0) scale3d(1, 1, 1) rotateX(0)
+                  rotateY(0) rotateZ(0) skew(0, 0);
+                opacity: 0;
+              "
+              class="banner-paragraph"
+            >
+              Transform ideas into visual maps instantly. Create free AI-powered
+              mindmaps or get custom designs for complex projects.
+            </p>
+            <div
+              data-w-id="141d3dba-6ff2-94ce-b525-a94bc2246a04"
+              class="is-magnetic"
+            >
+              <div
+                data-w-id="141d3dba-6ff2-94ce-b525-a94bc2246a05"
+                style="
+                  -webkit-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -moz-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  -ms-transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  transform: translate3d(0, 100px, 0) scale3d(1, 1, 1)
+                    rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                  opacity: 0;
+                "
+                class="btn-wrapper"
+              >
+                <a
+                  href="#mindmap-generator"
+                  class="primary-button w-inline-block"
+                  ><div class="button-content">
+                    <div class="button-text">Try AI Mindmap Now</div>
+                  </div>
+                  <div
+                    style="
+                      -webkit-transform: translate3d(-100%, 0, 0)
+                        scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                        skew(0, 0);
+                      -moz-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      -ms-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                    "
+                    class="button-bg-block"
+                  ></div
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="banner-bottom-wrap">
+          <div
+            data-w-id="57670ff5-3170-d7e1-ca90-5e426db0818e"
+            style="opacity: 0"
+            class="banner-bottom-single-item"
+          >
+            <div class="banner-bottom-item-content">
+              <div class="bottom-item-text"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="features-area overflow-hidden">
+      <div class="container">
+        <div class="feature-content-wrap">
+          <div class="feature-content">
+            <h2 class="section-title">
+              Elevate Your Thinking with Premium
+              <span class="section-title-extra-color">Custom Mind-maps</span>
+            </h2>
+            <p class="section-paragraph mb-35">
+              Unlock the power of bespoke, expertly crafted mindmaps tailored to
+              your unique needs.
+            </p>
+            <div
+              data-w-id="0f133477-1de8-8b24-b238-48e9fc916076"
+              class="is-magnetic"
+            >
+              <div
+                data-w-id="0f133477-1de8-8b24-b238-48e9fc916077"
+                class="btn-wrapper"
+              >
+                <a
+                  href="https://form.jotform.com/242861442424050"
+                  class="primary-button w-inline-block"
+                  ><div class="button-content">
+                    <div class="button-text">Explore Premium Mindmaps</div>
+                  </div>
+                  <div
+                    style="
+                      -webkit-transform: translate3d(-100%, 0, 0)
+                        scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                        skew(0, 0);
+                      -moz-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      -ms-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                    "
+                    class="button-bg-block"
+                  ></div
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="feature-thumbnail">
+            <img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc0_writing.png"
+              loading="lazy"
+              alt="handwriting"
+            />
+          </div>
+        </div>
+        <div class="feature-items-wrapper">
+          <div
+            data-w-id="543bbd67-5514-da25-412b-75a0c2f8a17d"
+            style="opacity: 0"
+            class="feature-single-item"
+          >
+            <div class="feature-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8d_translate-icon.svg"
+                loading="lazy"
+                alt="translate icon"
+                class="feature-icon-01"
+              />
+            </div>
+            <div class="feature-content">
+              <h5 class="feature-item-title">Multi-Language Support</h5>
+              <p class="feature-item-paragraph">
+                Create and view mindmaps in multiple languages, breaking down
+                language barriers in learning and brainstorming.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="89115cb8-c515-4dda-241b-774b38b4bfa6"
+            style="opacity: 0"
+            class="feature-single-item"
+          >
+            <div class="feature-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd85_grammerly.svg"
+                loading="lazy"
+                alt="Grammarly icon"
+                class="feature-icon-01"
+              />
+            </div>
+            <div class="feature-content">
+              <h5 class="feature-item-title">Custom Mindmap Creation</h5>
+              <p class="feature-item-paragraph">
+                Get personalized, professionally crafted mindmaps tailored to
+                your specific needs and requirements.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="ebb736d9-39f1-e687-b77b-42d0ba5428b7"
+            style="opacity: 0"
+            class="feature-single-item"
+          >
+            <div class="feature-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd76_ai.svg"
+                loading="lazy"
+                alt="ai sheet icon"
+                class="feature-icon-01"
+              />
+            </div>
+            <div class="feature-content">
+              <h5 class="feature-item-title">Free AI Mindmap Generator</h5>
+              <p class="feature-item-paragraph">
+                Experience our cutting-edge AI tool that creates mindmaps from
+                YouTube videos or text input - no login required!
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="ae3faada-0ec1-97cf-f09d-67a1da5cc6ee"
+            style="opacity: 0"
+            class="feature-single-item"
+          >
+            <div class="feature-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd78_browser.svg"
+                loading="lazy"
+                alt="browser icon"
+                class="feature-icon-01"
+              />
+            </div>
+            <div class="feature-content">
+              <h5 class="feature-item-title">Unlimited Generations</h5>
+              <p class="feature-item-paragraph">
+                Create as many mindmaps as you want, with the option to generate
+                more after each completion.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="b9932288-0e1b-2864-483d-6bf507c56bd4"
+            style="opacity: 0"
+            class="feature-single-item"
+          >
+            <div class="feature-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8b_notes.svg"
+                loading="lazy"
+                alt="note pad icon"
+                class="feature-icon-01"
+              />
+            </div>
+            <div class="feature-content">
+              <h5 class="feature-item-title">Text-to-Mindmap</h5>
+              <p class="feature-item-paragraph">
+                Save hours every day. Convert long-form text into easy-to-digest
+                mindmaps instantly.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="adc62f1a-fa29-a689-233b-566acc693535"
+            style="opacity: 0"
+            class="feature-single-item"
+          >
+            <div class="feature-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670c0a94e9e241b80cec4ad3_email.png"
+                loading="lazy"
+                width="42"
+                height="43"
+                alt=""
+                class="feature-icon-01"
+              />
+            </div>
+            <div class="feature-content">
+              <h5 class="feature-item-title">Email Delivery</h5>
+              <p class="feature-item-paragraph">
+                Receive your generated mindmaps directly in your inbox for easy
+                access and storage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="extention-area">
+      <div class="container">
+        <div class="extention-content-wrap">
+          <div class="extention-thumbanil">
+            <div class="thumbnail-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc2_1.png"
+                loading="lazy"
+                alt="girl stand with a handset and looked surprised"
+                class="extention-image"
+              />
+            </div>
+            <img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd6d_ai-email.svg"
+              loading="lazy"
+              data-w-id="4c837dbf-03f0-bc29-d0ea-5309d0776fed"
+              alt="graphical icon"
+              class="ai-email-image"
+            /><img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd80_extention.svg"
+              loading="lazy"
+              data-w-id="f95ad332-eebf-d3aa-7f53-513453d24ecc"
+              alt="graphical icon"
+              class="browser-extention"
+            /><img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd72_bot.svg"
+              loading="lazy"
+              data-w-id="083b45de-fdab-a2b9-fb2e-b0555347730c"
+              alt="ai bot icon
+  "
+              class="ai-bot"
+            />
+          </div>
+          <div
+            id="w-node-_569d6d8b-46fb-18fe-0b70-6d27e75c1a0a-8b9ecd66"
+            class="extention-content"
+          >
+            <h2
+              data-w-id="58b9d555-d2a9-9abc-985e-5fa022076824"
+              style="opacity: 0"
+              class="extention-title"
+            >
+              Custom<br />‍<span class="section-title-extra-color"
+                >Mindmap
+              </span>
+              Creation
+            </h2>
+            <p class="section-paragraph mb-35">
+              Visualize your ideas effortlessly. Expert-crafted mindmaps
+              tailored to your unique needs, showcased on Instagram.
+            </p>
+            <div
+              data-w-id="cc9220c1-3943-4522-858d-66553c4c287e"
+              class="is-magnetic"
+            >
+              <div
+                data-w-id="cc9220c1-3943-4522-858d-66553c4c287f"
+                class="btn-wrapper"
+              >
+                <a
+                  href="https://www.instagram.com/penseeweb"
+                  class="secondary-button w-inline-block"
+                  ><div class="button-content">
+                    <div class="button-text">Explore on Instagram</div>
+                    <img
+                      src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdaf_arrow-icon-white.svg"
+                      loading="lazy"
+                      alt="arrow icon white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      -webkit-transform: translate3d(-100%, 0, 0)
+                        scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                        skew(0, 0);
+                      -moz-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      -ms-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                    "
+                    class="button-bg-block"
+                  ></div
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="rewrite-area">
+      <div class="container">
+        <div class="rewrite-content-wrap">
+          <div
+            id="w-node-d724de09-c840-9217-f189-a39d2c8b772a-8b9ecd66"
+            class="rewrite-content"
+          >
+            <h2
+              data-w-id="58b44a37-51cf-deeb-8cfa-58aeb35da2f2"
+              style="opacity: 0"
+              class="rewriter-title"
+            >
+              <span class="section-title-extra-color _2nd">Transform</span>,
+              Your Ideas with Mindmaps
+            </h2>
+            <p class="section-paragraph mb-35">
+              Save time and boost creativity. Our versatile mindmap solutions
+              work seamlessly across all your devices.
+            </p>
+            <div
+              data-w-id="414cf37e-8a12-ae8c-d9ce-850e5d5fdc11"
+              class="is-magnetic"
+            >
+              <div
+                data-w-id="414cf37e-8a12-ae8c-d9ce-850e5d5fdc12"
+                class="btn-wrapper"
+              >
+                <a
+                  href="https://form.jotform.com/242861442424050"
+                  class="secondary-button w-inline-block"
+                  ><div class="button-content">
+                    <div class="button-text">Explore Our Services</div>
+                    <img
+                      src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdaf_arrow-icon-white.svg"
+                      loading="lazy"
+                      alt="arrow icon white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      -webkit-transform: translate3d(-100%, 0, 0)
+                        scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0)
+                        skew(0, 0);
+                      -moz-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      -ms-transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                      transform: translate3d(-100%, 0, 0) scale3d(1, 1, 1)
+                        rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+                    "
+                    class="button-bg-block"
+                  ></div
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="rewriter-thumbnail">
+            <div class="thumbnail-wrap _2nd">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdd0_6703e061-37dd-4fe4-9d16-2717475e.png"
+                loading="lazy"
+                alt=""
+                class="rewrite-image"
+              />
+            </div>
+            <img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd81_Edit%20toolbar.svg"
+              loading="lazy"
+              data-w-id="896a0dd1-3c29-ce0d-5342-ad96348f68c8"
+              alt="graphical icon"
+              class="toolbar-image"
+            /><img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd9a_send.svg"
+              loading="lazy"
+              data-w-id="38f5ffec-a2d0-8342-aaf2-0ba7f7565948"
+              alt="graphical icon"
+              class="sendnow-image"
+            /><img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd9b_toggle.png"
+              loading="lazy"
+              data-w-id="4b38bd64-4d5c-b826-b1e7-637b9c6088fc"
+              alt="graphical icon"
+              class="rewrite-small-image"
+            /><img
+              src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd94_grammerly-checker.svg"
+              loading="lazy"
+              data-w-id="cf880927-be79-5108-8836-e1ff8d0aaad5"
+              alt="graphical icon"
+              class="grammerly-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="how-to-pwrite-area section-paddiing overflow-hidden">
+      <div id="howitworks-mindmap" class="container">
+        <div class="section-content-wrapper mb-60">
+          <h2 class="section-title">How to use otools.</h2>
+          <p class="section-paragraph">
+            Transform your ideas into visual masterpieces. Our AI-powered
+            mindmap creator works seamlessly across all your devices.
+          </p>
+        </div>
+        <div class="how-to-pwrite-item-wrap">
+          <div class="how-to-single-item">
+            <div class="how-to-item-content">
+              <div class="serial-no">1.</div>
+              <h3 class="how-to-item-title">Input Your Content</h3>
+              <p class="how-to-item-description">
+                Paste a YouTube link or your text into our AI mindmap generator.
+                Watch as complex information transforms into clear, visual
+                mindmaps.
+              </p>
+            </div>
+            <div
+              id="w-node-_20df111a-93e5-8168-3072-3389d7fbc02d-8b9ecd66"
+              class="how-to-item-thumbail"
+            >
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdc1_how%20to.png"
+                loading="lazy"
+                alt="How to process thumbnail"
+                class="process-image"
+              />
+            </div>
+          </div>
+          <div class="how-to-single-item _2nd">
+            <div class="how-to-item-content">
+              <div class="serial-no _2nd">2.</div>
+              <h3 class="how-to-item-title">Generate Your Mindmap</h3>
+              <p class="how-to-item-description">
+                Click &#x27;Generate&#x27; and our AI will create a
+                comprehensive mindmap with a pre-set layout. Provide your email
+                to claim your free, unlimited mindmaps.
+              </p>
+            </div>
+            <div
+              id="w-node-_9d67d601-3df4-e81e-ee3b-bce32ecce9e3-8b9ecd66"
+              class="how-to-item-thumbail"
+            >
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd9d_cyc.png"
+                loading="lazy"
+                alt="graphical icon"
+                class="process-image"
+              />
+            </div>
+          </div>
+          <div class="how-to-single-item _3rd">
+            <div class="how-to-item-content">
+              <div class="serial-no">3.</div>
+              <h3 class="how-to-item-title">Request Custom Mindmap</h3>
+              <p class="how-to-item-description">
+                Need a more detailed or tailored mindmap? Contact our expert
+                team to create a custom-made mindmap for your specific
+                requirements.
+              </p>
+            </div>
+            <div
+              id="w-node-_24e9a40d-c521-4c52-44c2-2990dda5c1f8-8b9ecd66"
+              class="how-to-item-thumbail"
+            >
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd97_Rewritte.png"
+                loading="lazy"
+                alt="graphical icon"
+                class="process-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="must-tools-area section-paddiing overflow-hidden">
+      <div id="features-mindmap" class="container">
+        <div class="tools-area-content">
+          <h2 class="section-title mw100">
+            Enhance your must-have
+            <span class="section-title-extra-color">Mindmapping Tool.</span>
+          </h2>
+          <p class="section-paragraph mw100">
+            Save hours every day. Experience the power of AI-enhanced
+            mindmapping using XMind, available across all your devices.
+          </p>
+        </div>
+        <div class="tools-single-items-wrapper">
+          <div
+            data-w-id="f234eb05-3429-c0fc-1b8c-5ec6902c5522"
+            style="opacity: 0"
+            class="tools-single-item"
+          >
+            <div class="tools-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf982a4df38e7a6f0688d_artificial-intelligence.png"
+                loading="lazy"
+                width="60"
+                height="61"
+                alt=""
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf982a4df38e7a6f0688d_artificial-intelligence-p-500.png 500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf982a4df38e7a6f0688d_artificial-intelligence.png       512w
+                "
+                sizes="(max-width: 991px) 50px, 60px"
+                class="tools-icon"
+              />
+            </div>
+            <div class="tools-icon-content">
+              <h5 class="tools-item-title">Intelligent Mindmapping</h5>
+              <p class="tools-item-description">
+                Our AI enhances your mindmapping experience in XMind, suggesting
+                connections and branches to speed up your thought process.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="9bde317f-4c07-5d08-1ba3-7239e4ebd2d2"
+            style="opacity: 0"
+            class="tools-single-item"
+          >
+            <div class="tools-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf95273a92fa5b41f83c5_lightning.png"
+                loading="lazy"
+                width="60"
+                height="61"
+                alt=""
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf95273a92fa5b41f83c5_lightning-p-500.png 500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf95273a92fa5b41f83c5_lightning.png       512w
+                "
+                sizes="(max-width: 991px) 50px, 60px"
+                class="tools-icon"
+              />
+            </div>
+            <div class="tools-icon-content">
+              <h5 class="tools-item-title">Instant Generation</h5>
+              <p class="tools-item-description">
+                Transform any text or document into a comprehensive mindmap
+                instantly, saving you hours of manual work.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="acb2ddac-9594-b6aa-39af-56c5e63711a5"
+            style="opacity: 0"
+            class="tools-single-item"
+          >
+            <div class="tools-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf879158581b9e10eddc6_mind.png"
+                loading="lazy"
+                width="60"
+                height="61"
+                alt=""
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf879158581b9e10eddc6_mind-p-500.png 500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf879158581b9e10eddc6_mind.png       512w
+                "
+                sizes="(max-width: 991px) 50px, 60px"
+                class="tools-icon"
+              />
+            </div>
+            <div class="tools-icon-content">
+              <h5 class="tools-item-title">Video to Mindmap</h5>
+              <p class="tools-item-description">
+                AI automates data analysis and summarization, aiding in
+                note-taking, project management
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="4ca7e6e1-1546-4682-f2b9-ca13df04ed05"
+            style="opacity: 0"
+            class="tools-single-item"
+          >
+            <div class="tools-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf9c01f9b8f0220b346fe_data-analysis.png"
+                loading="lazy"
+                width="60"
+                height="61"
+                alt=""
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf9c01f9b8f0220b346fe_data-analysis-p-500.png 500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf9c01f9b8f0220b346fe_data-analysis.png       512w
+                "
+                sizes="(max-width: 991px) 50px, 60px"
+                class="tools-icon"
+              />
+            </div>
+            <div class="tools-icon-content">
+              <h5 class="tools-item-title">Smart Summarization</h5>
+              <p class="tools-item-description">
+                Our AI analyzes and summarizes complex documents, creating
+                concise mindmaps for easy understanding and reference.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="5d40cc9b-9cb1-ea52-6c28-f89312d838f5"
+            style="opacity: 0"
+            class="tools-single-item"
+          >
+            <div class="tools-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf8e4c4442a965ef768f4_collaboration.png"
+                loading="lazy"
+                width="60"
+                height="61"
+                alt=""
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf8e4c4442a965ef768f4_collaboration-p-500.png 500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf8e4c4442a965ef768f4_collaboration.png       512w
+                "
+                sizes="(max-width: 991px) 50px, 60px"
+                class="tools-icon"
+              />
+            </div>
+            <div class="tools-icon-content">
+              <h5 class="tools-item-title">Collaborative Mapping</h5>
+              <p class="tools-item-description">
+                Enhance team collaboration with AI-powered suggestions and
+                real-time mindmap updates across all team members.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="108ff2a0-6490-422a-6905-4da52264d54e"
+            style="opacity: 0"
+            class="tools-single-item"
+          >
+            <div class="tools-icon-wrap">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf8b68a3af23f53806838_continuous-learning.png"
+                loading="lazy"
+                width="60"
+                height="61"
+                alt=""
+                srcset="
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf8b68a3af23f53806838_continuous-learning-p-500.png 500w,
+                  https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bf8b68a3af23f53806838_continuous-learning.png       512w
+                "
+                sizes="(max-width: 991px) 50px, 60px"
+                class="tools-icon"
+              />
+            </div>
+            <div class="tools-icon-content">
+              <h5 class="tools-item-title">Continuous Learning</h5>
+              <p class="tools-item-description">
+                Our AI evolves with each use, constantly improving its mindmap
+                generation and enhancement capabilities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="more-feature-area section-paddiing overflow-hidden">
+      <div id="pricing-mindmap" class="container">
+        <div class="more-feature-content-wrap">
+          <h2 class="section-title">
+            More power to Every Mindmap You
+            <span class="section-title-extra-color">Create.</span>
+          </h2>
+          <p class="section-paragraph mw100">
+            Save hours every day. Experience our AI-enhanced mindmapping tool
+            that works seamlessly across your Mac, iPhone, and iPad.
+          </p>
+        </div>
+        <div class="more-feature-item-wrapper">
+          <div
+            data-w-id="3038c93e-4018-af38-8734-a1d8c7bba774"
+            style="opacity: 0"
+            class="feature-single-item-two"
+          >
+            <div class="more-feature-icon">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd83_email.svg"
+                loading="lazy"
+                alt="graphical icon"
+                class="feature-icon"
+              />
+            </div>
+            <div class="more-feature-content">
+              <h4 class="more-feature-item-title">
+                Free AI Generation<br />$0
+              </h4>
+              <p class="more-feature-desciption">
+                Unleash your thoughts with our AI. Unlimited mindmaps, basic
+                tweaks, core features. No strings attached. Your ideas,
+                amplified.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="28978e86-e698-814c-5f51-8a2b456cd5e4"
+            style="opacity: 0"
+            class="feature-single-item-two _2nd"
+          >
+            <div class="more-feature-icon">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd84_grammer.svg"
+                loading="lazy"
+                alt="graphical icon"
+                class="feature-icon"
+              />
+            </div>
+            <div class="more-feature-content">
+              <h4 class="more-feature-item-title">
+                Custom Mindmaps<br />$2 - $10 per mindmap
+              </h4>
+              <p class="more-feature-desciption">
+                We craft, you conquer. Tailored mindmaps, priority support. Your
+                vision, our obsession. Students, we&#x27;ve got you - $1 for 3
+                maps. Brilliance on a budget.
+              </p>
+            </div>
+          </div>
+          <div
+            data-w-id="ecf73ebe-8dda-7969-4740-8e956f47ff22"
+            style="opacity: 0"
+            class="feature-single-item-two _3rd"
+          >
+            <div class="more-feature-icon">
+              <img
+                src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd6f_blog.svg"
+                loading="lazy"
+                alt="graphical icon"
+                class="feature-icon"
+              />
+            </div>
+            <div class="more-feature-content">
+              <h4 class="more-feature-item-title">
+                Enterprise Solutions<br />Contact Us
+              </h4>
+              <p class="more-feature-desciption">
+                Power play for the big leagues. Bulk creation, advanced
+                customization, dedicated manager, API access. We don&#x27;t just
+                meet expectations - we shatter them. Your empire of ideas starts
+                here.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="testimonial-area overflow-hidden">
+      <div class="section-content-wrapper mb-70">
+        <h2 class="section-title mw100">
+          Trusted by over
+          <span class="section-title-extra-color">160+ users</span>
+        </h2>
+      </div>
+      <div
+        data-w-id="073e6078-fcc5-8fa4-c1e3-f55d60107979"
+        style="
+          -webkit-transform: translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0)
+            rotateY(0) rotateZ(0) skew(0, 0);
+          -moz-transform: translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0)
+            rotateY(0) rotateZ(0) skew(0, 0);
+          -ms-transform: translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0)
+            rotateY(0) rotateZ(0) skew(0, 0);
+          transform: translate3d(0vw, 0, 0) scale3d(1, 1, 1) rotateX(0)
+            rotateY(0) rotateZ(0) skew(0, 0);
+        "
+        class="testimonial-marquee mb-25"
+      >
+        <div class="marquee-track">
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bef4a4fe2a72246af9d33_Sheela-designstyle-popstar-m.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Sheela</div>
+                  <div class="author-designation">Student</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                This AI mindmap tool has revolutionized my study process. It
+                helps me visualize complex topics effortlessly. However, I wish
+                there were more templates customization options.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b74afc46b5fec88ba0aec_letter-l-icon-png-29.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b74afc46b5fec88ba0aec_letter-l-icon-png-29-p-500.png 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b74afc46b5fec88ba0aec_letter-l-icon-png-29.png       512w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Li Wein</div>
+                  <div class="author-designation">Marketing Manager</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                As a non-native English speaker, I found the custom mindmap
+                service incredibly helpful for organizing my project ideas. The
+                team was patient with my requests, though the turnaround time
+                was a bit longer than expected.<br />
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b743815658028c3d35bcf_download%20(1).png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Robert Fox</div>
+                  <div class="author-designation">Entrepreneur</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                I was skeptical at first, but after using the free AI mindmap
+                generator, I was blown away. It&#x27;s intuitive and saves so
+                much time. I ended up ordering a custom mindmap for my business
+                plan, and the results were fantastic.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b75d3f41cb1c72604afc0_9000004.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b75d3f41cb1c72604afc0_9000004-p-500.png 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b75d3f41cb1c72604afc0_9000004.png       512w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Kim Min-jun</div>
+                  <div class="author-designation">Teacher</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                The free mindmap tool is a game-changer for my lesson planning.
+                It&#x27;s user-friendly and the results are visually appealing.
+                One drawback is the limited templates for the free version.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp"
+                    loading="lazy"
+                    width="38"
+                    height="39"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740-p-500.webp 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp       600w
+                    "
+                    sizes="(max-width: 1279px) 38px, (max-width: 1439px) 3vw, 38px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Olivia Thompson</div>
+                  <div class="author-designation">Student</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                As a visual learner, this mindmap tool has been invaluable for
+                organizing my thesis research. I love how easy it is to use, but
+                I wish there were more color scheme options.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="marquee-track">
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7b504acec738c624a53f_9460092.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7b504acec738c624a53f_9460092-p-500.png 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7b504acec738c624a53f_9460092.png       512w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Priya Venkatesh</div>
+                  <div class="author-designation">Student</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                As a medical student, the AI mindmap generator has been a
+                lifesaver for summarizing complex topics. I just wish it had
+                more medical-specific icons and terminology.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7cdd15658028c3d74db1_9104088.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Emma O&#x27;Brien</div>
+                  <div class="author-designation">Teacher</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                I use the free AI tool to create mindmaps for my students.
+                It&#x27;s incredibly user-friendly, but I&#x27;d love to see
+                more educational templates added in the future.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740-p-500.webp 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp       600w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Fatima Al-Sayed</div>
+                  <div class="author-designation">Not specified</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                I&#x27;m not a native English speaker, so I always struggled
+                with writing in English. But after using a personal AI writing
+                tool, my writing has improved dramatically. The tool helped me
+                with grammar
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecda2_user-4.png"
+                    loading="lazy"
+                    alt="testimonial client image"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Zoe Chen</div>
+                  <div class="author-designation">Student</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                &quot;I&#x27;ve been using AI writing tools for my social media
+                posts, and I&#x27;m impressed with how attention-grabbing they
+                are. It&#x27;s definitely helped increase my engagement with
+                followers.&quot;
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-w-id="40e1c3d9-65a5-4006-39bd-f4442bb01673"
+        style="
+          -webkit-transform: translate3d(-100vw, 0, 0) scale3d(1, 1, 1)
+            rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+          -moz-transform: translate3d(-100vw, 0, 0) scale3d(1, 1, 1) rotateX(0)
+            rotateY(0) rotateZ(0) skew(0, 0);
+          -ms-transform: translate3d(-100vw, 0, 0) scale3d(1, 1, 1) rotateX(0)
+            rotateY(0) rotateZ(0) skew(0, 0);
+          transform: translate3d(-100vw, 0, 0) scale3d(1, 1, 1) rotateX(0)
+            rotateY(0) rotateZ(0) skew(0, 0);
+        "
+        class="testimonial-marquee right"
+      >
+        <div class="marquee-track right">
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740-p-500.webp 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp       600w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Rajesh Kumar</div>
+                  <div class="author-designation">Business Analyst</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                The custom mindmap service exceeded my expectations. The team
+                captured my complex project structure perfectly. It was a bit
+                pricey, but worth every penny for the quality delivered.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bee47da67b003467331a9_celtic-1292841_1280.webp"
+                    loading="lazy"
+                    width="38"
+                    height="39"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bee47da67b003467331a9_celtic-1292841_1280-p-500.webp   500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bee47da67b003467331a9_celtic-1292841_1280-p-800.webp   800w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bee47da67b003467331a9_celtic-1292841_1280-p-1080.webp 1080w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670bee47da67b003467331a9_celtic-1292841_1280.webp        1280w
+                    "
+                    sizes="(max-width: 1279px) 38px, (max-width: 1439px) 3vw, 38px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Yuki Tanaka</div>
+                  <div class="author-designation">UX Designer</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                I use the AI mindmap generator for brainstorming sessions.
+                It&#x27;s incredibly helpful, though sometimes the generated
+                connections aren&#x27;t as intuitive as I&#x27;d like. Still,
+                it&#x27;s a great starting point.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740-p-500.webp 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp       600w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">María González</div>
+                  <div class="author-designation">Not specified</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                The free tool is amazing for quick mindmaps. I&#x27;ve
+                recommended it to all my colleagues. My only wish is for a
+                mobile app version for on-the-go mapping.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b783d73a92fa5b4c6428f_https___meta-q.cdn.bubble.io_f1512936020165x278911292087286720_A.png"
+                    loading="lazy"
+                    width="38"
+                    height="39"
+                    alt=""
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Aisha Mahmood</div>
+                  <div class="author-designation">Researcher</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                I ordered a custom mindmap for my research paper, and the result
+                was beyond my expectations. The team really understood my needs.
+                The only downside was the initial communication delay.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp"
+                    loading="lazy"
+                    width="38"
+                    height="39"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740-p-500.webp 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp       600w
+                    "
+                    sizes="(max-width: 1279px) 38px, (max-width: 1439px) 3vw, 38px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Lars Andersen (D</div>
+                  <div class="author-designation">Project Manager</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                This mindmap tool has streamlined our team&#x27;s ideation
+                process. The free version is great, but we quickly upgraded for
+                more features. Occasionally, the server can be slow during peak
+                hours.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="marquee-track right">
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7b90326401560331d36e_800px-Eo_circle_pink_letter-c.svg.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7b90326401560331d36e_800px-Eo_circle_pink_letter-c.svg-p-500.png 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7b90326401560331d36e_800px-Eo_circle_pink_letter-c.svg.png       800w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Chen Wei</div>
+                  <div class="author-designation">Entrepreneur</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                The custom mindmap service helped me visualize my startup plan.
+                The team was professional, though I felt the revision process
+                could have been more streamlined.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b7d3b5b7380b799c1116c_regional-indicator-symbol-letter-h-emoji-256x256-t27fy3i5.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Hiroshi Yamamoto</div>
+                  <div class="author-designation">Software Developer</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                The AI mindmap generator is a great asset for visualizing our
+                project structures. It&#x27;s user-friendly and helps us
+                brainstorm effectively. While it doesn&#x27;t have API
+                integration, which would be nice for our workflow, it&#x27;s
+                still a valuable tool for our team planning sessions.
+                Occasionally, we wish for more tech-specific templates, but
+                overall, it&#x27;s very useful for our needs.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    srcset="
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740-p-500.webp 500w,
+                      https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b77c41d004766bbb2d26c_default-avatar-profile-icon-social-600nw-1677509740.webp       600w
+                    "
+                    sizes="(max-width: 1439px) 48px, (max-width: 1919px) 3vw, 48px"
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Ananya Deshmukh</div>
+                  <div class="author-designation">Marketing Consultant</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                The AI mindmap generator is a time-saver for brainstorming
+                sessions. Unlimited mindmaps is great for our team&#x27;s needs.
+                However, the lack of customization options is frustrating - no
+                templates or font choices make our maps look generic. Also, the
+                website can be quite laggy, especially during peak hours.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-signle-item">
+            <div class="testimonial-author">
+              <div class="author-meta">
+                <div class="author-thumbnail">
+                  <img
+                    src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b81ae3d20ce5d4f7be133_png-transparent-gmail-android-email-npm-material-design-letter-m-text-trademark-logo-thumbnail.png"
+                    loading="lazy"
+                    width="48"
+                    height="49"
+                    alt=""
+                    class="author-image"
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-name">Marcus Eriksson</div>
+                  <div class="author-designation">Entrepreneur</div>
+                </div>
+              </div>
+              <div class="author-social"></div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-desciption">
+                I love how quickly I can generate mindmaps with this tool.
+                It&#x27;s perfect for visualizing business ideas on the fly. On
+                the downside, I tried to order a custom mindmap and got no
+                response to my email for days. When they finally replied, the
+                turnaround time was longer than expected.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="faq-s-area section-paddiing overflow-hidden">
+      <div class="container">
+        <div class="section-content-wrapper mb-35">
+          <h2 class="section-title mw100">
+            Frequently asked
+            <span class="section-title-extra-color">Questions</span>
+          </h2>
+        </div>
+        <div class="faq-item-wrap">
+          <div class="faq-item">
+            <a
+              data-w-id="41fbe994-12a6-42f1-3096-b52a3efeeeae"
+              href="#"
+              class="faq-question w-inline-block"
+              ><h4 class="faq-title">
+                What is PenseeWeb AI mindmap generator?
+              </h4>
+              <div class="p-m-wrap">
+                <div class="minus"></div>
+                <div class="plus"></div></div
+            ></a>
+            <div style="height: 0px" class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="faq-paragraph">
+                  Our AI mindmap generator is a free tool that automatically
+                  creates mindmaps from YouTube video links or text input. It
+                  uses advanced AI algorithms to extract key concepts and
+                  organize them into a visually appealing and easy-to-understand
+                  mindmap structure.<br />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <a
+              data-w-id="41fbe994-12a6-42f1-3096-b52a3efeeeba"
+              href="#"
+              class="faq-question w-inline-block"
+              ><h4 class="faq-title">
+                How do I use the free AI mindmap generator?
+              </h4>
+              <div class="p-m-wrap">
+                <div class="minus"></div>
+                <div class="plus"></div></div
+            ></a>
+            <div style="height: 0px" class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="faq-paragraph">
+                  Using our AI mindmap generator is simple: 1) Paste a YouTube
+                  video link or your text into the input box on our website. 2)
+                  Click the &#x27;Generate&#x27; button. 3) Enter your email
+                  address to claim your mindmap. 4) After a brief ad, your
+                  mindmap will be ready to view and download.<br />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <a
+              data-w-id="41fbe994-12a6-42f1-3096-b52a3efeeec6"
+              href="#"
+              class="faq-question w-inline-block"
+              ><h4 class="faq-title">
+                Is there a limit to how many mindmaps I can generate?
+              </h4>
+              <div class="p-m-wrap">
+                <div class="minus"></div>
+                <div class="plus"></div></div
+            ></a>
+            <div style="height: 0px" class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="faq-paragraph">
+                  No, there&#x27;s no limit! You can generate as many mindmaps
+                  as you want for free. After each generation, you&#x27;ll have
+                  the option to create another mindmap immediately.<br />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <a
+              data-w-id="3f5d5f1c-e53e-6691-96fd-360715a0e62c"
+              href="#"
+              class="faq-question w-inline-block"
+              ><h4 class="faq-title">
+                Do you offer custom mindmap creation services?
+              </h4>
+              <div class="p-m-wrap">
+                <div class="minus"></div>
+                <div class="plus"></div></div
+            ></a>
+            <div style="height: 0px" class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="faq-paragraph">
+                  Yes, we do! While our AI tool is great for quick mindmaps, we
+                  also offer professional, custom-made mindmaps tailored to your
+                  specific needs. Click the &#x27;Contact Us&#x27; button at the
+                  top of our website to submit your requirements, and our team
+                  will get back to you.<br />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <a
+              data-w-id="29d51d2e-69a6-961a-5c44-5aa451eb7104"
+              href="#"
+              class="faq-question w-inline-block"
+              ><h4 class="faq-title">Why should I use mindmaps?</h4>
+              <div class="p-m-wrap">
+                <div class="minus"></div>
+                <div class="plus"></div></div
+            ></a>
+            <div style="height: 0px" class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="faq-paragraph">
+                  Mindmaps are powerful tools for learning, brainstorming, and
+                  organizing information. They can help you save time, improve
+                  memory retention, enhance creativity, and make complex
+                  information easier to understand and remember. Our website
+                  features many examples and use cases to demonstrate the
+                  benefits of mindmapping.<br />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="call-to-action-area overflow-hidden">
+      <div class="container">
+        <div id="mindmap-generator" class="cta-content-wrapper">
+          <div class="cta-content">
+            <h2 class="cta-title">Experience the Power of AI Mindmapping</h2>
+            <div class="connect-form-block">
+              <form id="linkForm" class="connect-form">
+                <div class="relative">
+                  <input 
+                    type="url" 
+                    id="youtubeLink"
+                    class="text-field w-input"
+                    placeholder="Enter YouTube Link"
+                    required
+                  />
+                  <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
+                </div>
+                
+                <div class="captcha-container">
+                  <div class="g-recaptcha" 
+                    data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U"
+                    data-callback="onCaptchaVerified"
+                    data-expired-callback="onCaptchaExpired">
+                  </div>
+                </div>
+                <div id="captchaError" class="error-message text-center">Please verify that you are not a robot</div>
+                
+                <input 
+                  type="submit" 
+                  id="generateButton"
+                  class="submit-button w-button"
+                  value="Generate Now"
+                  disabled
+                />
+              </form>
+            </div>
+            <div class="cta-items-wrapper">
+              <div class="cta-single-item">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
+                  loading="lazy"
+                  alt="verify icon"
+                  class="check-icon"
+                />
+                <div class="cta-item-text">Unlimited Free Mindmaps</div>
+              </div>
+              <div class="cta-single-item">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
+                  loading="lazy"
+                  alt="verify icon"
+                  class="check-icon"
+                />
+                <div class="cta-item-text">No Credit card needed</div>
+              </div>
+              <div class="cta-single-item">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
+                  loading="lazy"
+                  alt="verify icon"
+                  class="check-icon"
+                />
+                <div class="cta-item-text">YouTube Video Integration</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="footer-area overflow-hidden">
+      <div class="container">
+        <div class="footer-social-wrapper">
+          <div
+            data-w-id="ed2832a9-174d-34ed-0900-6774b54e9ec5"
+            style="opacity: 0"
+            class="footer-social-item"
+          >
+            <div class="footer-social-top">
+              <div class="social-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd82_twitter.svg"
+                  loading="lazy"
+                  alt="twitter icon"
+                />
+                <div class="social-item-name">Twitter</div>
+              </div>
+              <div class="arrow-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdad_arrow-right.svg"
+                  loading="lazy"
+                  alt="Arrow right black"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="footer-social-top">
+              <div class="social-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd74_community.svg"
+                  loading="lazy"
+                  alt="community icon"
+                />
+                <div class="social-item-name">Community</div>
+              </div>
+              <div class="arrow-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdad_arrow-right.svg"
+                  loading="lazy"
+                  alt="Arrow right black"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            data-w-id="aeac3052-c7d2-3f52-24df-ffa5be23e263"
+            style="opacity: 0"
+            class="footer-social-item"
+          >
+            <address class="footer-social-top">
+              <div class="social-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd87_LinkedIn.svg"
+                  loading="lazy"
+                  alt="LinkedIn icon"
+                />
+                <div class="social-item-name">Linkedin</div>
+              </div>
+              <div class="arrow-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdad_arrow-right.svg"
+                  loading="lazy"
+                  alt="Arrow right black"
+                />
+              </div>
+            </address>
+            <div class="divider"></div>
+            <div class="footer-social-top">
+              <div class="social-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd74_community.svg"
+                  loading="lazy"
+                  alt="community icon"
+                />
+                <div class="social-item-name">Articles</div>
+              </div>
+              <div class="arrow-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdad_arrow-right.svg"
+                  loading="lazy"
+                  alt="Arrow right black"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            data-w-id="34e8c425-f5e6-f830-1a78-4b7a727983e3"
+            style="opacity: 0"
+            class="footer-social-item"
+          >
+            <div class="footer-social-top">
+              <div class="social-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd8e_slack-mini.svg"
+                  loading="lazy"
+                  alt="slack icon"
+                />
+                <div class="social-item-name">Slack</div>
+              </div>
+              <div class="arrow-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecdad_arrow-right.svg"
+                  loading="lazy"
+                  alt="Arrow right black"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+          </div>
+        </div>
+        <div class="footer-top">
+          <div class="footer-columns">
+            <div
+              data-w-id="4cf2823a-295e-9d5a-bd45-5bbd81ca8ab4"
+              style="opacity: 0"
+              class="footer-nav"
+            >
+              <h6 class="footer-menu-title">Company</h6>
+              <ul role="list" class="footer-menu-list w-list-unstyled">
+                <li class="list-item">About</li>
+                <li class="list-item">Pricing</li>
+                <li class="list-item">Blog</li>
+                <li class="list-item">Careers</li>
+              </ul>
+            </div>
+            <div
+              data-w-id="ed4ee8ae-5101-749a-8f12-3c95fa8ac53d"
+              style="opacity: 0"
+              class="footer-nav"
+            >
+              <h6 class="footer-menu-title">Solutions</h6>
+              <ul role="list" class="footer-menu-list w-list-unstyled">
+                <li class="list-item">AI MindMap Generator</li>
+                <li class="list-item">Startups</li>
+                <li class="list-item">Custom MindMaps</li>
+                <li class="list-item">YouTube Integration</li>
+                <li class="list-item">Educational Tools</li>
+              </ul>
+            </div>
+            <div
+              data-w-id="4cf2823a-295e-9d5a-bd45-5bbd81ca8ac0"
+              style="opacity: 0"
+              class="footer-nav"
+            >
+              <h6 class="footer-menu-title">Try PenseeWeb</h6>
+              <ul role="list" class="footer-menu-list w-list-unstyled">
+                <li class="list-item">Free MindMap Tool</li>
+                <li class="list-item">YouTube to MindMap</li>
+                <li class="list-item">Text to MindMap</li>
+                <li class="list-item">request custom mindmaps</li>
+              </ul>
+            </div>
+            <div
+              data-w-id="4cf2823a-295e-9d5a-bd45-5bbd81ca8acc"
+              style="opacity: 0"
+              class="footer-nav"
+            >
+              <h6 class="footer-menu-title">Resources</h6>
+              <ul role="list" class="footer-menu-list w-list-unstyled">
+                <li class="list-item">Help center</li>
+                <li class="list-item">Contact support</li>
+                <li class="list-item">Community</li>
+                <li class="list-item">MindMap Templates</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="copyright-content">
+          <img
+            src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2.png"
+            loading="lazy"
+            width="138"
+            height="50"
+            alt=""
+            srcset="
+              https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-500.png   500w,
+              https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-800.png   800w,
+              https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-1080.png 1080w,
+              https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-1600.png 1600w,
+              https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2-p-2000.png 2000w,
+              https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670b82740f65495dc956235b_dfdafdfc-5c35-4115-803d-95d7087e34d2.png        2365w
+            "
+            sizes="(max-width: 479px) 100vw, (max-width: 767px) 100px, 138px"
+            class="footer-logo"
+          />
+          <div class="copyright-text">
+            © 2024 PenseeWeb AI. All rights reserved.
+          </div>
+          <div class="copyright-text">Privacy Policy</div>
+          <div class="copyright-text">Terms of Service</div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=670a096c71af692d8b9ecd68"
+      type="text/javascript"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/js/webflow.88f8032a2.js"
+      type="text/javascript"
+    ></script>
+    <!-- Modals -->
+<div id="emailModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeEmailModal()">&times;</span>
+    <h2>Almost there!</h2>
+    <p>Enter your email to receive your mindmap</p>
+    <form id="emailForm" class="connect-form">
+      <input 
+        type="email" 
+        id="userEmail"
+        class="text-field w-input"
+        placeholder="Your email address"
+        required
+      />
+      <div class="loading-spinner"></div>
+      <input 
+        type="submit" 
+        class="submit-button w-button"
+        value="Send My Mindmap"
+      />
+    </form>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal">
+  <div class="success-modal fade-in">
+    <h2>Your mindmap is being generated!</h2>
+    <p>Please wait while we process your request</p>
+    <div class="countdown" id="countdown">15</div>
+    <p>You'll receive your mindmap via email shortly</p>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  // Global variables
+  let isCaptchaVerified = false;
+  let isValidUrl = false;
+
+  // Initialize Supabase client
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // reCAPTCHA callback functions
+  function onCaptchaVerified() {
+    isCaptchaVerified = true;
+    document.getElementById('captchaError').classList.remove('visible');
+    updateGenerateButton();
+  }
+
+  function onCaptchaExpired() {
+    isCaptchaVerified = false;
+    updateGenerateButton();
+  }
+
+  function updateGenerateButton() {
+    const generateButton = document.getElementById('generateButton');
+    generateButton.disabled = !(isValidUrl && isCaptchaVerified);
+  }
+
+  // Extract YouTube video ID
+  function extractVideoId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const linkForm = document.getElementById('linkForm');
+    const youtubeLinkInput = document.getElementById('youtubeLink');
+    const emailModal = document.getElementById('emailModal');
+    const successModal = document.getElementById('successModal');
+    const emailForm = document.getElementById('emailForm');
+    const loadingSpinner = document.querySelector('.loading-spinner');
+
+    // YouTube URL validation
+    youtubeLinkInput.addEventListener('input', function() {
+      const youtubeUrl = this.value;
+      const videoId = extractVideoId(youtubeUrl);
+      isValidUrl = videoId !== null;
+      
+      const errorElement = document.getElementById('youtubeLinkError');
+      if (!isValidUrl && youtubeUrl) {
+        errorElement.classList.add('visible');
+      } else {
+        errorElement.classList.remove('visible');
+      }
+      
+      updateGenerateButton();
+    });
+
+    // Form submission
+    linkForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isCaptchaVerified) {
+        document.getElementById('captchaError').classList.add('visible');
+        return;
+      }
+      emailModal.classList.add('active');
+    });
+
+    // Email form submission
+    emailForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('userEmail').value;
+      const youtubeUrl = youtubeLinkInput.value;
+      const videoId = extractVideoId(youtubeUrl);
+
+      loadingSpinner.classList.add('show');
+
+      try {
+        // First, insert the request into Supabase
+        const { data, error } = await supabase
+          .from('mindmap_requests')
+          .insert([
+            { 
+              email: email, 
+              youtube_url: youtubeUrl,
+              video_id: videoId,
+              status: 'pending'
+            }
+          ])
+          .select();
+
+        if (error) throw error;
+
+        // Call your backend API to trigger the mindmap generation
+                // Call your backend API to trigger the mindmap generation
+                const response = await fetch('/api/generate-mindmap', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            requestId: data[0].id,
+            videoId: videoId,
+            email: email
+          })
+        });
+
+        if (!response.ok) throw new Error('Failed to initiate mindmap generation');
+
+        emailModal.classList.remove('active');
+        successModal.classList.add('active');
+        startCountdown();
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+      } finally {
+        loadingSpinner.classList.remove('show');
+      }
+    });
+
+    // Countdown functionality
+    function startCountdown() {
+      let count = 15;
+      const countdownElement = document.getElementById('countdown');
+      
+      const interval = setInterval(() => {
+        count--;
+        countdownElement.textContent = count;
+        
+        if (count <= 0) {
+          clearInterval(interval);
+          successModal.classList.remove('active');
+          resetForms();
+        }
+      }, 1000);
+    }
+
+    // Reset forms
+    function resetForms() {
+      linkForm.reset();
+      emailForm.reset();
+      grecaptcha.reset();
+      isCaptchaVerified = false;
+      isValidUrl = false;
+      updateGenerateButton();
+    }
+  });
+</script>
+</body>
+</html>
