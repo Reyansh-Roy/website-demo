@@ -6,7 +6,8 @@
   <title>AI Mindmap Generator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+  <!-- Change to regular reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     .modal {
       display: none;
@@ -54,9 +55,9 @@
           <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
           
           <div class="captcha-container">
+            <!-- Changed to regular reCAPTCHA v2 checkbox -->
             <div class="g-recaptcha" 
-              data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U"
-              data-action="GENERATE_MINDMAP">
+              data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U">
             </div>
           </div>
           <div id="captchaError" class="error-message">Please verify that you are not a robot</div>
@@ -116,6 +117,7 @@
       const closeModal = document.getElementById('closeModal');
       const youtubeLinkInput = document.getElementById('youtubeLink');
       const youtubeLinkError = document.getElementById('youtubeLinkError');
+      const captchaError = document.getElementById('captchaError');
 
       function isValidYouTubeUrl(url) {
         try {
@@ -155,24 +157,21 @@
           return;
         }
 
-        try {
-          const token = await grecaptcha.enterprise.execute('6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U', {action: 'GENERATE_MINDMAP'});
-          
-          if (!token) {
-            document.getElementById('captchaError').style.display = 'block';
-            return;
-          }
-
-          emailModal.classList.add('active');
-        } catch (error) {
-          console.error('reCAPTCHA error:', error);
-          document.getElementById('captchaError').style.display = 'block';
+        // Get the response from regular reCAPTCHA
+        const recaptchaResponse = grecaptcha.getResponse();
+        
+        if (!recaptchaResponse) {
+          captchaError.style.display = 'block';
+          return;
         }
+
+        captchaError.style.display = 'none';
+        emailModal.classList.add('active');
       });
 
       closeModal.addEventListener('click', function() {
         emailModal.classList.remove('active');
-        grecaptcha.enterprise.reset();
+        grecaptcha.reset();
       });
 
       emailForm.addEventListener('submit', async function(e) {
@@ -198,7 +197,7 @@
           emailForm.reset();
           linkForm.reset();
           emailModal.classList.remove('active');
-          grecaptcha.enterprise.reset();
+          grecaptcha.reset();
         } catch (error) {
           console.error('Error:', error);
           alert('There was an error submitting your request. Please try again.');
@@ -208,7 +207,7 @@
       emailModal.addEventListener('click', function(e) {
         if (e.target === emailModal) {
           emailModal.classList.remove('active');
-          grecaptcha.enterprise.reset();
+          grecaptcha.reset();
         }
       });
     });
