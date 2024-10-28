@@ -118,11 +118,19 @@
       margin: 0 auto;
     }
 
-    /* Button Styles */
+    /* Button and Form Styles */
     .submit-button {
       background: #6D28D9 !important;
       color: white !important;
       transition: all 0.3s ease !important;
+      padding: 15px 40px !important;
+      border-radius: 30px !important;
+      border: none !important;
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      min-width: 160px !important;
+      white-space: nowrap !important;
     }
 
     .submit-button:disabled {
@@ -138,27 +146,73 @@
     }
 
     /* Input Field Styles */
+    .text-field {
+      flex: 1 !important;
+      min-width: 250px !important;
+      padding: 15px 20px !important;
+      border-radius: 30px !important;
+      border: 1px solid #E5E7EB !important;
+      font-size: 16px !important;
+      background: rgba(255, 255, 255, 0.9) !important;
+    }
+
     .text-field:focus {
-      outline: none;
-      border-color: #6D28D9;
-      box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+      outline: none !important;
+      border-color: #6D28D9 !important;
+      box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1) !important;
+    }
+
+    /* Container Styles */
+    .cta-content-wrapper {
+      min-height: 400px !important;
+      padding: 40px 20px !important;
     }
 
     /* Responsive Styles */
     @media (max-width: 768px) {
+      .cta-content-wrapper {
+        padding: 20px !important;
+        min-height: auto !important;
+      }
+      
       .cta-items-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
       }
       
       .cta-title {
-        font-size: 2rem !important;
+        font-size: 32px !important;
+        margin-bottom: 30px !important;
+      }
+
+      .connect-form {
+        padding: 0 10px !important;
+        width: 100% !important;
       }
 
       .text-field {
-        width: 90% !important;
+        width: 100% !important;
+        margin-bottom: 15px !important;
       }
+
+      .submit-button {
+        width: 100% !important;
+      }
+    }
+
+    /* Form Layout */
+    .connect-form {
+      max-width: 600px !important;
+      margin: 0 auto !important;
+    }
+
+    .form-input-wrapper {
+      display: flex !important;
+      gap: 10px !important;
+      margin-bottom: 20px !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
     }
   </style>
 
@@ -1972,26 +2026,52 @@
     </section>
     <section class="call-to-action-area overflow-hidden">
       <div class="container">
-        <div id="mindmap-generator" class="cta-content-wrapper">
+        <div id="mindmap-generator" class="cta-content-wrapper" style="min-height: 400px; padding: 40px 20px;">
           <div class="cta-content" style="text-align: center;">
             <h2 class="cta-title" style="color: #2D2D2D; font-size: 48px; margin-bottom: 40px;">Experience the Power of AI Mindmapping</h2>
+            
             <form id="linkForm" class="connect-form" style="max-width: 600px; margin: 0 auto;">
-              <input
-                class="text-field w-input"
-                type="url" 
-                id="youtubeLink"
-                placeholder="Enter YouTube Link"
-                required
-                style="
-                  width: 100%;
-                  padding: 15px 20px;
-                  border-radius: 30px;
-                  border: 1px solid #E5E7EB;
-                  margin-bottom: 20px;
-                  font-size: 16px;
-                  background: rgba(255, 255, 255, 0.9);
-                "
-              />
+              <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
+                <input
+                  class="text-field w-input"
+                  type="url" 
+                  id="youtubeLink"
+                  placeholder="Enter YouTube Link"
+                  required
+                  style="
+                    flex: 1;
+                    min-width: 250px;
+                    padding: 15px 20px;
+                    border-radius: 30px;
+                    border: 1px solid #E5E7EB;
+                    font-size: 16px;
+                    background: rgba(255, 255, 255, 0.9);
+                  "
+                />
+                
+                <button
+                  type="submit"
+                  class="submit-button w-button"
+                  id="generateButton"
+                  disabled
+                  style="
+                    background: #6D28D9;
+                    color: white;
+                    padding: 15px 40px;
+                    border-radius: 30px;
+                    border: none;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    min-width: 160px;
+                    white-space: nowrap;
+                  "
+                >
+                  Generate Now
+                </button>
+              </div>
+    
               <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
               
               <div class="captcha-container" style="margin: 20px 0;">
@@ -2002,30 +2082,16 @@
                 </div>
               </div>
               <div id="captchaError" class="error-message">Please verify that you are not a robot</div>
-              
-              <button
-                type="submit"
-                class="submit-button w-button"
-                id="generateButton"
-                disabled
-                style="
-                  background: #6D28D9;
-                  color: white;
-                  padding: 15px 40px;
-                  border-radius: 30px;
-                  border: none;
-                  font-size: 16px;
-                  font-weight: 600;
-                  cursor: pointer;
-                  transition: all 0.3s ease;
-                  margin-top: 20px;
-                "
-              >
-                Generate Now
-              </button>
             </form>
             
-            <div class="cta-items-wrapper" style="display: flex; justify-content: center; gap: 40px; margin-top: 40px;">
+            <div class="cta-items-wrapper" style="
+              display: flex;
+              justify-content: center;
+              gap: 40px;
+              margin-top: 40px;
+              flex-wrap: wrap;
+              padding: 0 20px;
+            ">
               <div class="cta-single-item" style="display: flex; align-items: center; gap: 10px;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2">
                   <path d="M20 6L9 17l-5-5"/>
@@ -2049,7 +2115,7 @@
         </div>
       </div>
     </section>
-            <section class="footer-area overflow-hidden">
+                <section class="footer-area overflow-hidden">
       <div class="container">
         <div class="footer-social-wrapper">
           <div
