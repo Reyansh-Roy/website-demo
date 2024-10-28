@@ -2102,78 +2102,73 @@
 <style>
   .call-to-action-area {
     background: #A855F7;
-    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     padding: 40px 0;
+    overflow: hidden;
   }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
   }
 
   .cta-content-wrapper {
-    min-height: 400px;
-    padding: 60px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    backdrop-filter: blur(10px);
-  }
-
-  .cta-content {
     text-align: center;
   }
 
   .cta-title {
     color: white;
     font-size: 48px;
-    margin-bottom: 40px;
     font-weight: 700;
+    margin-bottom: 40px;
     line-height: 1.2;
-  }
-
-  .connect-form {
-    max-width: 600px;
-    margin: 0 auto;
   }
 
   .form-group {
     display: flex;
     gap: 12px;
     margin-bottom: 20px;
-    flex-wrap: wrap;
     justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 50px;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .text-field {
     flex: 1;
-    min-width: 250px;
     padding: 15px 24px;
     border-radius: 30px;
     border: none;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: transparent;
+    color: white;
+  }
+
+  .text-field::placeholder {
+    color: rgba(255, 255, 255, 0.8);
   }
 
   .text-field:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
   }
 
   .submit-button {
     background: white;
-    color: #A855F7;
-    padding: 15px 40px;
+    color: #000;
+    padding: 15px 32px;
     border-radius: 30px;
     border: none;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 160px;
     white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
   .submit-button:hover:not(:disabled) {
@@ -2185,18 +2180,13 @@
     background: #E5E7EB;
     color: #9CA3AF;
     cursor: not-allowed;
-    opacity: 0.7;
   }
 
   .error-message {
-    color: white;
+    color: #FEE2E2;
     font-size: 14px;
     margin-top: 8px;
-    visibility: hidden;
-  }
-
-  .error-message.visible {
-    visibility: visible;
+    display: none;
   }
 
   .captcha-container {
@@ -2207,23 +2197,17 @@
 
   .features-list {
     display: flex;
+    gap: 32px;
     justify-content: center;
-    gap: 40px;
     margin-top: 40px;
     flex-wrap: wrap;
-    padding: 0 20px;
   }
 
   .feature-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-  }
-
-  .feature-text {
+    gap: 8px;
     color: white;
-    font-size: 16px;
-    font-weight: 500;
   }
 
   .checkmark-icon {
@@ -2233,38 +2217,38 @@
     stroke-width: 2;
   }
 
-  @media (max-width: 768px) {
-    .cta-content-wrapper {
-      min-height: auto;
-      padding: 40px 20px;
-    }
+  .feature-text {
+    font-size: 16px;
+  }
 
+  @media (max-width: 640px) {
     .cta-title {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-size: 36px;
     }
 
     .form-group {
       flex-direction: column;
+      background: transparent;
+      padding: 0;
     }
-
+    
     .text-field {
+      background: rgba(255, 255, 255, 0.2);
       width: 100%;
     }
-
+    
     .submit-button {
       width: 100%;
     }
 
     .features-list {
-      gap: 20px;
       flex-direction: column;
       align-items: center;
+      gap: 16px;
     }
   }
 </style>
 
-<!-- The actual HTML section -->
 <section class="call-to-action-area">
   <div class="container">
     <div id="mindmap-generator" class="cta-content-wrapper">
