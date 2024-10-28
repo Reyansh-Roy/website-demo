@@ -120,8 +120,8 @@
 
     /* Button and Form Styles */
     .submit-button {
-      background: #6D28D9 !important;
-      color: white !important;
+      background: white !important;
+      color: #A855F7 !important;
       transition: all 0.3s ease !important;
       padding: 15px 40px !important;
       border-radius: 30px !important;
@@ -131,6 +131,7 @@
       cursor: pointer !important;
       min-width: 160px !important;
       white-space: nowrap !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
 
     .submit-button:disabled {
@@ -140,9 +141,8 @@
     }
 
     .submit-button:hover:not(:disabled) {
-      background: #5B21B6 !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 6px rgba(109, 40, 217, 0.2);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     /* Input Field Styles */
@@ -151,15 +151,15 @@
       min-width: 250px !important;
       padding: 15px 20px !important;
       border-radius: 30px !important;
-      border: 1px solid #E5E7EB !important;
+      border: none !important;
       font-size: 16px !important;
       background: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
 
     .text-field:focus {
       outline: none !important;
-      border-color: #6D28D9 !important;
-      box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1) !important;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.3) !important;
     }
 
     /* Container Styles */
@@ -168,17 +168,25 @@
       padding: 40px 20px !important;
     }
 
+    /* Form Layout */
+    .connect-form {
+      max-width: 600px !important;
+      margin: 0 auto !important;
+    }
+
+    .form-input-wrapper {
+      display: flex !important;
+      gap: 10px !important;
+      margin-bottom: 20px !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+    }
+
     /* Responsive Styles */
     @media (max-width: 768px) {
       .cta-content-wrapper {
         padding: 20px !important;
         min-height: auto !important;
-      }
-      
-      .cta-items-wrapper {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 20px !important;
       }
       
       .cta-title {
@@ -199,20 +207,10 @@
       .submit-button {
         width: 100% !important;
       }
-    }
 
-    /* Form Layout */
-    .connect-form {
-      max-width: 600px !important;
-      margin: 0 auto !important;
-    }
-
-    .form-input-wrapper {
-      display: flex !important;
-      gap: 10px !important;
-      margin-bottom: 20px !important;
-      flex-wrap: wrap !important;
-      justify-content: center !important;
+      .cta-items-wrapper {
+        gap: 20px !important;
+      }
     }
   </style>
 
@@ -2024,11 +2022,13 @@
         </div>
       </div>
     </section>
-    <section class="call-to-action-area overflow-hidden">
+    <section class="call-to-action-area overflow-hidden" style="background: #A855F7;">
       <div class="container">
         <div id="mindmap-generator" class="cta-content-wrapper" style="min-height: 400px; padding: 40px 20px;">
           <div class="cta-content" style="text-align: center;">
-            <h2 class="cta-title" style="color: #2D2D2D; font-size: 48px; margin-bottom: 40px;">Experience the Power of AI Mindmapping</h2>
+            <h2 class="cta-title" style="color: white; font-size: 48px; margin-bottom: 40px; font-weight: 700;">
+              Experience the Power of AI Mindmapping
+            </h2>
             
             <form id="linkForm" class="connect-form" style="max-width: 600px; margin: 0 auto;">
               <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
@@ -2043,9 +2043,10 @@
                     min-width: 250px;
                     padding: 15px 20px;
                     border-radius: 30px;
-                    border: 1px solid #E5E7EB;
+                    border: none;
                     font-size: 16px;
                     background: rgba(255, 255, 255, 0.9);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                   "
                 />
                 
@@ -2053,10 +2054,9 @@
                   type="submit"
                   class="submit-button w-button"
                   id="generateButton"
-                  disabled
                   style="
-                    background: #6D28D9;
-                    color: white;
+                    background: white;
+                    color: #A855F7;
                     padding: 15px 40px;
                     border-radius: 30px;
                     border: none;
@@ -2066,13 +2066,14 @@
                     transition: all 0.3s ease;
                     min-width: 160px;
                     white-space: nowrap;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                   "
                 >
                   Generate Now
                 </button>
               </div>
     
-              <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
+              <div id="youtubeLinkError" class="error-message" style="color: white;">Please enter a valid YouTube video URL</div>
               
               <div class="captcha-container" style="margin: 20px 0;">
                 <div class="g-recaptcha" 
@@ -2081,7 +2082,7 @@
                   data-expired-callback="onCaptchaExpired">
                 </div>
               </div>
-              <div id="captchaError" class="error-message">Please verify that you are not a robot</div>
+              <div id="captchaError" class="error-message" style="color: white;">Please verify that you are not a robot</div>
             </form>
             
             <div class="cta-items-wrapper" style="
@@ -2093,29 +2094,29 @@
               padding: 0 20px;
             ">
               <div class="cta-single-item" style="display: flex; align-items: center; gap: 10px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
-                <div class="cta-item-text">Unlimited Free Mindmaps</div>
+                <div class="cta-item-text" style="color: white;">Unlimited Free Mindmaps</div>
               </div>
               <div class="cta-single-item" style="display: flex; align-items: center; gap: 10px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
-                <div class="cta-item-text">No Credit card needed</div>
+                <div class="cta-item-text" style="color: white;">No Credit card needed</div>
               </div>
               <div class="cta-single-item" style="display: flex; align-items: center; gap: 10px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
-                <div class="cta-item-text">YouTube Video Integration</div>
+                <div class="cta-item-text" style="color: white;">YouTube Video Integration</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-                <section class="footer-area overflow-hidden">
+                    <section class="footer-area overflow-hidden">
       <div class="container">
         <div class="footer-social-wrapper">
           <div
