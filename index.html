@@ -103,7 +103,36 @@
         transform: rotate(45deg);
         margin: 0 auto;
       }
-    </style>        
+    </style>
+    <!-- Add the new styles here -->
+    <style>
+      .error-message {
+        color: #ff4444;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        visibility: hidden;
+      }
+      .error-message.visible {
+        visibility: visible;
+      }
+      .submit-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .submit-button:not(:disabled):hover {
+        background: #f3f4f6 !important;
+        transform: translateY(-2px);
+      }
+      @media (max-width: 768px) {
+        .cta-items-wrapper {
+          flex-direction: column;
+          align-items: center;
+        }
+        .cta-title {
+          font-size: 2rem !important;
+        }
+      }
+    </style>
     <link
       href="https://cdn.prod.website-files.com/6709727f720bcdcb6a582cc6/6709727f720bcdcb6a582d25_musemind-loog.png"
       rel="apple-touch-icon"
@@ -1914,62 +1943,109 @@
     </section>
     <section class="call-to-action-area overflow-hidden">
       <div class="container">
-        <div id="mindmap-generator" class="cta-content-wrapper">
+        <div class="cta-content-wrapper" style="background: linear-gradient(135deg, #9b6bff 0%, #7446ff 100%); padding: 4rem 2rem; border-radius: 1rem; text-align: center;">
           <div class="cta-content">
-            <h2 class="cta-title">Experience the Power of AI Mindmapping</h2>
-            <form id="linkForm" class="connect-form">
-              <input
-                class="text-field w-input"
-                type="url" 
-                id="youtubeLink"
-                placeholder="Enter YouTube Link"
-                required
-              />
-              <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
+            <h2 class="cta-title" style="color: white; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">
+              Experience the Power of AI Mindmapping
+            </h2>
+            
+            <form id="linkForm" class="connect-form" style="max-width: 600px; margin: 0 auto;">
+              <div style="margin-bottom: 1.5rem;">
+                <input
+                  class="text-field w-input"
+                  type="url" 
+                  id="youtubeLink"
+                  placeholder="Enter YouTube Link"
+                  required
+                  style="
+                    width: 100%;
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    border: 2px solid #e5e7eb;
+                    font-size: 1rem;
+                    background: white;
+                    margin-bottom: 1rem;
+                  "
+                />
+                <div id="youtubeLinkError" class="error-message">Please enter a valid YouTube video URL</div>
+              </div>
               
-              <div class="captcha-container">
+              <div class="captcha-container" style="
+                background: white;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                display: inline-block;
+                margin-bottom: 1.5rem;
+              ">
                 <div class="g-recaptcha" 
                   data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U"
                   data-callback="onCaptchaVerified"
                   data-expired-callback="onCaptchaExpired">
                 </div>
               </div>
-              <div id="captchaError" class="error-message">Please verify that you are not a robot</div>
               
-              <input
+              <button
                 type="submit"
                 class="submit-button w-button"
                 id="generateButton"
-                value="Generate Now"
                 disabled
-              />
+                style="
+                  background: white;
+                  color: #7446ff;
+                  padding: 1rem 2rem;
+                  border-radius: 2rem;
+                  font-weight: bold;
+                  border: none;
+                  cursor: pointer;
+                  font-size: 1.1rem;
+                  transition: all 0.3s ease;
+                  min-width: 200px;
+                "
+              >
+                Generate Now
+              </button>
             </form>
-            <div class="cta-items-wrapper">
-              <div class="cta-single-item">
-                <img
-                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
-                  loading="lazy"
-                  alt="verify icon"
-                  class="check-icon"
-                />
+    
+            <div class="cta-items-wrapper" style="
+              display: flex;
+              justify-content: center;
+              gap: 2rem;
+              margin-top: 3rem;
+              flex-wrap: wrap;
+            ">
+              <div class="cta-single-item" style="
+                display: flex;
+                align-items: center;
+                color: white;
+                gap: 0.5rem;
+              ">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5" stroke="white"/>
+                </svg>
                 <div class="cta-item-text">Unlimited Free Mindmaps</div>
               </div>
-              <div class="cta-single-item">
-                <img
-                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
-                  loading="lazy"
-                  alt="verify icon"
-                  class="check-icon"
-                />
+              
+              <div class="cta-single-item" style="
+                display: flex;
+                align-items: center;
+                color: white;
+                gap: 0.5rem;
+              ">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5" stroke="white"/>
+                </svg>
                 <div class="cta-item-text">No Credit card needed</div>
               </div>
-              <div class="cta-single-item">
-                <img
-                  src="https://cdn.prod.website-files.com/670a096c71af692d8b9ecd68/670a096c71af692d8b9ecd71_checkmark-badge-01.png"
-                  loading="lazy"
-                  alt="verify icon"
-                  class="check-icon"
-                />
+              
+              <div class="cta-single-item" style="
+                display: flex;
+                align-items: center;
+                color: white;
+                gap: 0.5rem;
+              ">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5" stroke="white"/>
+                </svg>
                 <div class="cta-item-text">YouTube Video Integration</div>
               </div>
             </div>
@@ -1977,7 +2053,7 @@
         </div>
       </div>
     </section>
-    <section class="footer-area overflow-hidden">
+        <section class="footer-area overflow-hidden">
       <div class="container">
         <div class="footer-social-wrapper">
           <div
@@ -2348,3 +2424,4 @@
     </script>    
   </body>
 </html>
+
