@@ -33,8 +33,162 @@
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="https://www.google.com/recaptcha/api.js"></script>
   
-  <!-- Combined and optimized styles -->
   <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Main Container Styles */
+    .call-to-action-area {
+      min-height: 100vh;
+      background: #A855F7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content-wrapper {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 60px 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Title Styles */
+    .cta-title {
+      font-size: 48px;
+      line-height: 1.2;
+      color: white;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    /* Form Styles */
+    .connect-form {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .form-input-wrapper {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text-field {
+      flex: 1;
+      height: 56px;
+      padding: 0 24px;
+      background: white;
+      border: none;
+      border-radius: 28px;
+      font-size: 16px;
+      color: #1A1A1A;
+      min-width: 300px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-field:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .text-field::placeholder {
+      color: #6B7280;
+    }
+
+    .submit-button {
+      height: 56px;
+      padding: 0 32px;
+      background: white;
+      color: #1A1A1A;
+      border: none;
+      border-radius: 28px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .submit-button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .submit-button:disabled {
+      background: #E5E7EB;
+      color: #9CA3AF;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    /* Features List */
+    .cta-items-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .cta-single-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+    }
+
+    .cta-item-text {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    /* Captcha and Error Messages */
+    .captcha-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .error-message {
+      color: #FEE2E2;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 8px;
+      visibility: hidden;
+    }
+
+    .error-message.visible {
+      visibility: visible;
+    }
+
     /* Modal Styles */
     .modal {
       display: none;
@@ -43,36 +197,26 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.5);
       z-index: 1000;
-    }
-    
-    .modal.active {
-      display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* Form and Button Styles */
-    .captcha-container {
+    .modal.active {
       display: flex;
-      justify-content: center;
-      margin: 1rem 0;
     }
 
-    .error-message {
-      color: #dc2626;
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 90%;
       text-align: center;
-      visibility: hidden;
     }
 
-    .error-message.visible {
-      visibility: visible;
-    }
-
-    /* Success Modal Styles */
+    /* Success Modal */
     .success-modal {
       display: none;
       position: fixed;
@@ -80,7 +224,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.5);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -89,11 +233,10 @@
     .success-content {
       background: white;
       padding: 2rem;
-      border-radius: 1rem;
+      border-radius: 16px;
       max-width: 500px;
       width: 90%;
       text-align: center;
-      position: relative;
     }
 
     /* Checkmark Animation */
@@ -103,8 +246,8 @@
       border-radius: 50%;
       display: block;
       margin: 0 auto 1rem;
-      background-color: #4CAF50;
-      padding: 1rem;
+      background: #10B981;
+      position: relative;
     }
 
     .checkmark::after {
@@ -115,133 +258,34 @@
       border: solid white;
       border-width: 0 5px 5px 0;
       transform: rotate(45deg);
-      margin: 0 auto;
-    }
-
-    /* Button and Form Styles */
-    .submit-button {
-      background: white !important;
-      color: #A855F7 !important;
-      transition: all 0.3s ease !important;
-      padding: 15px 40px !important;
-      border-radius: 30px !important;
-      border: none !important;
-      font-size: 16px !important;
-      font-weight: 600 !important;
-      cursor: pointer !important;
-      min-width: 160px !important;
-      white-space: nowrap !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-    }
-
-    .submit-button:disabled {
-      background: #E5E7EB !important;
-      color: #9CA3AF !important;
-      cursor: not-allowed !important;
-      opacity: 0.7;
-    }
-
-    .submit-button:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 6px rgba(109, 40, 217, 0.2);
-    }
-
-    /* Input Field Styles */
-    .text-field {
-      flex: 1 !important;
-      min-width: 250px !important;
-      padding: 15px 20px !important;
-      border-radius: 30px !important;
-      border: none !important;
-      font-size: 16px !important;
-      background: rgba(255, 255, 255, 0.9) !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-    }
-
-    .text-field:focus {
-      outline: none !important;
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.3) !important;
-    }
-
-    /* Container Styles */
-    .cta-content-wrapper {
-      min-height: 400px !important;
-      padding: 40px 20px !important;
-    }
-
-    /* Form Layout */
-    .connect-form {
-      max-width: 600px !important;
-      margin: 0 auto !important;
-    }
-
-    .form-input-wrapper {
-      display: flex !important;
-      gap: 10px !important;
-      margin-bottom: 20px !important;
-      flex-wrap: wrap !important;
-      justify-content: center !important;
-    }
-
-    /* Call to Action Styles */
-    .call-to-action-area {
-      background: #A855F7 !important;
-    }
-
-    .cta-title {
-      color: white !important;
-      font-size: 48px !important;
-      margin-bottom: 40px !important;
-      font-weight: 700 !important;
-    }
-
-    .cta-items-wrapper {
-      display: flex !important;
-      justify-content: center !important;
-      gap: 40px !important;
-      margin-top: 40px !important;
-      flex-wrap: wrap !important;
-      padding: 0 20px !important;
-    }
-
-    .cta-single-item {
-      display: flex !important;
-      align-items: center !important;
-      gap: 10px !important;
-    }
-
-    .cta-item-text {
-      color: white !important;
+      position: absolute;
+      top: 14px;
+      left: 28px;
     }
 
     /* Responsive Styles */
     @media (max-width: 768px) {
-      .cta-content-wrapper {
-        padding: 20px !important;
-        min-height: auto !important;
-      }
-      
       .cta-title {
-        font-size: 32px !important;
-        margin-bottom: 30px !important;
+        font-size: 32px;
       }
 
-      .connect-form {
-        padding: 0 10px !important;
-        width: 100% !important;
+      .form-input-wrapper {
+        flex-direction: column;
       }
 
       .text-field {
-        width: 100% !important;
-        margin-bottom: 15px !important;
+        width: 100%;
+        min-width: 0;
       }
 
       .submit-button {
-        width: 100% !important;
+        width: 100%;
       }
 
       .cta-items-wrapper {
-        gap: 20px !important;
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -2054,101 +2098,241 @@
         </div>
       </div>
     </section>
-    <section class="call-to-action-area overflow-hidden" style="background: #A855F7;">
-      <div class="container">
-        <div id="mindmap-generator" class="cta-content-wrapper" style="min-height: 400px; padding: 40px 20px;">
-          <div class="cta-content" style="text-align: center;">
-            <h2 class="cta-title" style="color: white; font-size: 48px; margin-bottom: 40px; font-weight: 700;">
-              Experience the Power of AI Mindmapping
-            </h2>
+<!-- Add this to your existing style section in the head -->
+<style>
+  .call-to-action-area {
+    background: #A855F7;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .cta-content-wrapper {
+    min-height: 400px;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .cta-content {
+    text-align: center;
+  }
+
+  .cta-title {
+    color: white;
+    font-size: 48px;
+    margin-bottom: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .connect-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .form-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .text-field {
+    flex: 1;
+    min-width: 250px;
+    padding: 15px 24px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .text-field:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+
+  .submit-button {
+    background: white;
+    color: #A855F7;
+    padding: 15px 40px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .submit-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  .submit-button:disabled {
+    background: #E5E7EB;
+    color: #9CA3AF;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .error-message {
+    color: white;
+    font-size: 14px;
+    margin-top: 8px;
+    visibility: hidden;
+  }
+
+  .error-message.visible {
+    visibility: visible;
+  }
+
+  .captcha-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .features-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .feature-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .checkmark-icon {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+    stroke-width: 2;
+  }
+
+  @media (max-width: 768px) {
+    .cta-content-wrapper {
+      min-height: auto;
+      padding: 40px 20px;
+    }
+
+    .cta-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      flex-direction: column;
+    }
+
+    .text-field {
+      width: 100%;
+    }
+
+    .submit-button {
+      width: 100%;
+    }
+
+    .features-list {
+      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+<!-- The actual HTML section -->
+<section class="call-to-action-area">
+  <div class="container">
+    <div id="mindmap-generator" class="cta-content-wrapper">
+      <div class="cta-content">
+        <h2 class="cta-title">
+          Experience the Power of AI Mindmapping
+        </h2>
+        
+        <form id="linkForm" class="connect-form">
+          <div class="form-group">
+            <input
+              class="text-field"
+              type="url" 
+              id="youtubeLink"
+              placeholder="Enter YouTube Link"
+              required
+            />
             
-            <form id="linkForm" class="connect-form" style="max-width: 600px; margin: 0 auto;">
-              <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
-                <input
-                  class="text-field w-input"
-                  type="url" 
-                  id="youtubeLink"
-                  placeholder="Enter YouTube Link"
-                  required
-                  style="
-                    flex: 1;
-                    min-width: 250px;
-                    padding: 15px 20px;
-                    border-radius: 30px;
-                    border: none;
-                    font-size: 16px;
-                    background: rgba(255, 255, 255, 0.9);
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                  "
-                />
-                
-                <button
-                  type="submit"
-                  class="submit-button w-button"
-                  id="generateButton"
-                  disabled
-                  style="
-                    background: white !important;
-                    color: #A855F7 !important;
-                    padding: 15px 40px !important;
-                    border-radius: 30px !important;
-                    border: none !important;
-                    font-size: 16px !important;
-                    font-weight: 600 !important;
-                    cursor: pointer !important;
-                    transition: all 0.3s ease !important;
-                    min-width: 160px !important;
-                    white-space: nowrap !important;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-                  "
-                >
-                  Generate Now
-                </button>
-              </div>
-    
-              <div id="youtubeLinkError" class="error-message" style="color: white;">Please enter a valid YouTube video URL</div>
-              
-              <div class="captcha-container" style="margin: 20px 0;">
-                <div class="g-recaptcha" 
-                  data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U"
-                  data-callback="onCaptchaVerified"
-                  data-expired-callback="onCaptchaExpired">
-                </div>
-              </div>
-              <div id="captchaError" class="error-message" style="color: white;">Please verify that you are not a robot</div>
-            </form>
-            
-            <div class="cta-items-wrapper" style="
-              display: flex;
-              justify-content: center;
-              gap: 40px;
-              margin-top: 40px;
-              flex-wrap: wrap;
-              padding: 0 20px;
-            ">
-              <div class="cta-single-item" style="display: flex; align-items: center; gap: 10px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <div class="cta-item-text" style="color: white;">Unlimited Free Mindmaps</div>
-              </div>
-              <div class="cta-single-item" style="display: flex; align-items: center; gap: 10px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <div class="cta-item-text" style="color: white;">No Credit card needed</div>
-              </div>
-              <div class="cta-single-item" style="display: flex; align-items: center; gap: 10px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <div class="cta-item-text" style="color: white;">YouTube Video Integration</div>
-              </div>
+            <button
+              type="submit"
+              class="submit-button"
+              id="generateButton"
+              disabled
+            >
+              Generate Now
+            </button>
+          </div>
+
+          <div id="youtubeLinkError" class="error-message">
+            Please enter a valid YouTube video URL
+          </div>
+          
+          <div class="captcha-container">
+            <div class="g-recaptcha" 
+              data-sitekey="6LcSam0qAAAAADtoVsg8TZ_t38IVU6t0cY6RW06U"
+              data-callback="onCaptchaVerified"
+              data-expired-callback="onCaptchaExpired">
             </div>
+          </div>
+          <div id="captchaError" class="error-message">
+            Please verify that you are not a robot
+          </div>
+        </form>
+        
+        <div class="features-list">
+          <div class="feature-item">
+            <svg class="checkmark-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <div class="feature-text">Unlimited Free Mindmaps</div>
+          </div>
+          <div class="feature-item">
+            <svg class="checkmark-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <div class="feature-text">No Credit card needed</div>
+          </div>
+          <div class="feature-item">
+            <svg class="checkmark-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <div class="feature-text">YouTube Video Integration</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
     <section class="footer-area overflow-hidden">
       <div class="container">
         <div class="footer-social-wrapper">
