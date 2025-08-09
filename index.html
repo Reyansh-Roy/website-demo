@@ -38,11 +38,67 @@
         .section-title { font-size: 2rem; text-align: center; letter-spacing: 1px; color: var(--heading-color); padding-bottom: 10px; border-bottom: 1px solid var(--glass-border); }
         .hint { text-align: center; font-style: italic; font-weight: 400; color: #a9a9a9; margin: 5px 0 40px 0; }
         
+        /* --- Action Buttons Bar --- */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .test-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+        }
+        
+        .export-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+        
+        .import-btn {
+            background: linear-gradient(135deg, #45b7d1, #96c93d);
+            color: white;
+        }
+        
+        .clear-btn {
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Hidden file input for import */
+        .hidden-file-input {
+            display: none;
+        }
+        
         /* --- Frosted Glass UI Blocks --- */
         .passage-block { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 30px; margin-bottom: 40px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); transition: border-color 0.3s; }
         .passage-block h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; color: var(--primary-accent); }
         label { display: block; margin-bottom: 8px; font-weight: 700; color: #c0c0c0; }
         label.answer-label { margin-top: 20px; font-weight: 500; color: var(--secondary-accent); }
+
+        /* --- Input Fields --- */
+        input[type="text"] { width: 100%; padding: 12px 15px; font-family: 'JetBrains Mono', monospace; font-size: 1rem; background: rgba(10, 10, 20, 0.8); border: 1px solid rgba(127, 90, 240, 0.4); border-radius: 8px; color: var(--text-color); transition: border-color 0.3s, box-shadow 0.3s; }
+        input[type="text"]:focus { outline: none; border-color: var(--secondary-accent); box-shadow: 0 0 10px rgba(44, 182, 125, 0.3); }
 
         /* --- Textarea with a "Code Editor" Feel --- */
         textarea { width: 100%; min-height: 180px; font-family: 'JetBrains Mono', monospace; font-size: 1rem; background: rgba(10, 10, 20, 0.8); border: 1px solid rgba(127, 90, 240, 0.4); border-radius: 8px; padding: 15px; color: var(--text-color); resize: vertical; transition: border-color 0.3s, box-shadow 0.3s; }
@@ -51,28 +107,122 @@
 
         .questions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
 
-        /* --- LRDI Image Upload Styling --- */
-        .image-upload-area { margin-top: 25px; }
-        .image-drop-zone { border: 2px dashed var(--glass-border); border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; }
-        .image-drop-zone:hover, .image-drop-zone.dragover { background-color: var(--glass-bg); border-color: var(--primary-accent); }
-        .image-drop-zone p { font-size: 1rem; color: #a9a9a9; pointer-events: none; }
-        .file-input { display: none; }
-        .image-preview { display: none; max-width: 100%; margin-top: 15px; border-radius: 8px; border: 1px solid var(--glass-border); }
-        
-        .paste-btn {
-            background-color: var(--secondary-accent);
-            color: var(--heading-color);
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s;
+        /* --- Modal Styling --- */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); }
+        .modal-content { background: var(--glass-bg); margin: 10% auto; padding: 30px; border: 1px solid var(--glass-border); border-radius: 16px; width: 80%; max-width: 500px; backdrop-filter: blur(20px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); max-height: 70vh; overflow-y: auto; }
+        .modal h3 { color: var(--primary-accent); margin-bottom: 20px; text-align: center; font-size: 1.5rem; }
+        .modal-buttons { display: flex; gap: 15px; margin-top: 25px; }
+        .modal-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; transition: all 0.3s; }
+        .modal-btn.submit { background: var(--primary-accent); color: white; }
+        .modal-btn.cancel { background: rgba(255, 255, 255, 0.1); color: var(--text-color); border: 1px solid var(--glass-border); }
+        .modal-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3); }
+
+        /* --- QA Section Specific Styling --- */
+        .qa-single-question {
+            background: rgba(15, 15, 25, 0.6);
+            border: 1px solid rgba(127, 90, 240, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
         }
-        .paste-btn:hover {
-             background-color: #35d491;
+        
+        .qa-single-question:hover {
+            border-color: var(--primary-accent);
+            box-shadow: 0 4px 20px rgba(127, 90, 240, 0.2);
+        }
+        
+        .qa-single-question h4 {
+            color: var(--primary-accent);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* --- FIXED LRDI Image Upload Styling --- */
+        .image-upload-area { margin-top: 25px; position: relative; }
+        .image-drop-zone { 
+            border: 3px dashed var(--glass-border); 
+            border-radius: 12px; 
+            padding: 30px 20px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            background: rgba(10, 10, 20, 0.5);
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-drop-zone:hover { 
+            border-color: var(--primary-accent); 
+            background-color: rgba(127, 90, 240, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(127, 90, 240, 0.2);
+        }
+        
+        .image-drop-zone.drag-over {
+            border-color: var(--secondary-accent) !important;
+            background-color: rgba(44, 182, 125, 0.15) !important;
+            border-style: solid !important;
+            transform: scale(1.02);
+        }
+        
+        .image-drop-zone.has-image {
+            border-color: var(--secondary-accent);
+            background-color: rgba(44, 182, 125, 0.1);
+        }
+        
+        .image-drop-zone p { 
+            font-size: 1.1rem; 
+            color: #a9a9a9; 
+            margin: 0;
+            pointer-events: none; 
+        }
+        
+        .image-drop-zone .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-accent);
+        }
+        
+        .file-input { 
+            position: absolute; 
+            left: -9999px; 
+            width: 1px; 
+            height: 1px; 
+            opacity: 0;
+        }
+        
+        .image-preview { 
+            display: none; 
+            max-width: 100%; 
+            max-height: 250px;
+            margin-top: 15px; 
+            border-radius: 8px; 
+            border: 2px solid var(--secondary-accent); 
+            box-shadow: 0 4px 15px rgba(44, 182, 125, 0.3);
+        }
+        
+        .image-preview.visible {
+            display: block;
+        }
+        
+        .file-info {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: rgba(44, 182, 125, 0.2);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--secondary-accent);
+            display: none;
+        }
+        
+        .file-info.visible {
+            display: block;
         }
 
         /* --- Vibrant Submission Button --- */
@@ -81,6 +231,37 @@
         
         /* --- Status Message --- */
         #status-message { text-align: center; margin-top: 20px; font-size: 1rem; min-height: 24px; }
+        
+        /* --- Progress Bar --- */
+        .progress-container { width: 100%; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; margin: 20px 0; display: none; }
+        .progress-bar { width: 0%; height: 20px; background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent)); border-radius: 10px; transition: width 0.3s; }
+        .progress-text { text-align: center; margin-top: 10px; font-size: 0.9rem; color: var(--text-color); }
+        
+        /* --- Notification Toast --- */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .toast.success { border-left: 4px solid var(--secondary-accent); }
+        .toast.error { border-left: 4px solid #ff6b6b; }
+        .toast.info { border-left: 4px solid var(--primary-accent); }
     </style>
 </head>
 <body>
@@ -89,6 +270,25 @@
 
     <div class="container">
         <h1 id="greeting"></h1>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button type="button" class="action-btn test-btn" onclick="fillTestData()">
+                🧪 Fill Test Data
+            </button>
+            <button type="button" class="action-btn export-btn" onclick="exportData()">
+                📤 Export Data
+            </button>
+            <button type="button" class="action-btn import-btn" onclick="triggerImport()">
+                📥 Import Data
+            </button>
+            <button type="button" class="action-btn clear-btn" onclick="clearAllData()">
+                🗑️ Clear All
+            </button>
+        </div>
+        
+        <!-- Hidden file input for import -->
+        <input type="file" id="import-file-input" class="hidden-file-input" accept=".json" onchange="importData(event)">
 
         <form id="main-form">
             <h2 class="section-title">Reading Comprehension Section</h2>
@@ -107,15 +307,16 @@
 
             <div class="passage-block">
                 <h3>LRDI Set 1 (Questions 1-5)</h3>
-                <textarea id="lrdi_para1" name="lrdi_para1" class="passage-input" placeholder="Paste the text for LRDI Set 1 here..."></textarea>
+                <textarea name="lrdi_para1" class="passage-input" placeholder="Paste the text for LRDI Set 1 here..."></textarea>
                 <div class="image-upload-area" id="image-area-1">
                     <label>Image for Set 1 (Optional)</label>
-                    <div class="image-drop-zone">
-                        <p>Drag & Drop, Paste, or Click to Select</p>
+                    <div class="image-drop-zone" tabindex="0">
+                        <div class="upload-icon">📁</div>
+                        <p>Drop image, click here, or paste (Ctrl+V)</p>
                     </div>
-                    <button type="button" class="paste-btn">Paste from Clipboard</button>
-                    <input type="file" class="file-input" accept="image/png, image/jpeg">
-                    <img class="image-preview" alt="Image preview for Set 1">
+                    <input type="file" class="file-input" accept="image/*">
+                    <img class="image-preview">
+                    <div class="file-info"></div>
                 </div>
                 <div class="questions-grid">
                     <div class="qa-pair"><label for="lrdi_q1">Question 1</label><textarea id="lrdi_q1" name="lrdi_q1"></textarea><label for="lrdi_a1" class="answer-label">Answer for Q1</label><textarea id="lrdi_a1" name="lrdi_a1"></textarea></div>
@@ -128,18 +329,19 @@
 
             <div class="passage-block">
                 <h3>LRDI Set 2 (Questions 6-10)</h3>
-                <textarea id="lrdi_para2" name="lrdi_para2" class="passage-input" placeholder="Paste the text for LRDI Set 2 here..."></textarea>
-                 <div class="image-upload-area" id="image-area-2">
+                <textarea name="lrdi_para2" class="passage-input" placeholder="Paste the text for LRDI Set 2 here..."></textarea>
+                <div class="image-upload-area" id="image-area-2">
                     <label>Image for Set 2 (Optional)</label>
-                    <div class="image-drop-zone">
-                        <p>Drag & Drop, Paste, or Click to Select</p>
+                    <div class="image-drop-zone" tabindex="0">
+                        <div class="upload-icon">📁</div>
+                        <p>Drop image, click here, or paste (Ctrl+V)</p>
                     </div>
-                    <button type="button" class="paste-btn">Paste from Clipboard</button>
-                    <input type="file" class="file-input" accept="image/png, image/jpeg">
-                    <img class="image-preview" alt="Image preview for Set 2">
+                    <input type="file" class="file-input" accept="image/*">
+                    <img class="image-preview">
+                    <div class="file-info"></div>
                 </div>
                 <div class="questions-grid">
-                     <div class="qa-pair"><label for="lrdi_q6">Question 6</label><textarea id="lrdi_q6" name="lrdi_q6"></textarea><label for="lrdi_a6" class="answer-label">Answer for Q6</label><textarea id="lrdi_a6" name="lrdi_a6"></textarea></div>
+                    <div class="qa-pair"><label for="lrdi_q6">Question 6</label><textarea id="lrdi_q6" name="lrdi_q6"></textarea><label for="lrdi_a6" class="answer-label">Answer for Q6</label><textarea id="lrdi_a6" name="lrdi_a6"></textarea></div>
                     <div class="qa-pair"><label for="lrdi_q7">Question 7</label><textarea id="lrdi_q7" name="lrdi_q7"></textarea><label for="lrdi_a7" class="answer-label">Answer for Q7</label><textarea id="lrdi_a7" name="lrdi_a7"></textarea></div>
                     <div class="qa-pair"><label for="lrdi_q8">Question 8</label><textarea id="lrdi_q8" name="lrdi_q8"></textarea><label for="lrdi_a8" class="answer-label">Answer for Q8</label><textarea id="lrdi_a8" name="lrdi_a8"></textarea></div>
                     <div class="qa-pair"><label for="lrdi_q9">Question 9</label><textarea id="lrdi_q9" name="lrdi_q9"></textarea><label for="lrdi_a9" class="answer-label">Answer for Q9</label><textarea id="lrdi_a9" name="lrdi_a9"></textarea></div>
@@ -149,15 +351,16 @@
 
             <div class="passage-block">
                 <h3>LRDI Set 3 (Questions 11-15)</h3>
-                <textarea id="lrdi_para3" name="lrdi_para3" class="passage-input" placeholder="Paste the text for LRDI Set 3 here..."></textarea>
-                 <div class="image-upload-area" id="image-area-3">
+                <textarea name="lrdi_para3" class="passage-input" placeholder="Paste the text for LRDI Set 3 here..."></textarea>
+                <div class="image-upload-area" id="image-area-3">
                     <label>Image for Set 3 (Optional)</label>
-                    <div class="image-drop-zone">
-                        <p>Drag & Drop, Paste, or Click to Select</p>
+                    <div class="image-drop-zone" tabindex="0">
+                        <div class="upload-icon">📁</div>
+                        <p>Drop image, click here, or paste (Ctrl+V)</p>
                     </div>
-                    <button type="button" class="paste-btn">Paste from Clipboard</button>
-                    <input type="file" class="file-input" accept="image/png, image/jpeg">
-                    <img class="image-preview" alt="Image preview for Set 3">
+                    <input type="file" class="file-input" accept="image/*">
+                    <img class="image-preview">
+                    <div class="file-info"></div>
                 </div>
                 <div class="questions-grid">
                     <div class="qa-pair"><label for="lrdi_q11">Question 11</label><textarea id="lrdi_q11" name="lrdi_q11"></textarea><label for="lrdi_a11" class="answer-label">Answer for Q11</label><textarea id="lrdi_a11" name="lrdi_a11"></textarea></div>
@@ -170,15 +373,16 @@
 
             <div class="passage-block">
                 <h3>LRDI Set 4 (Questions 16-20)</h3>
-                <textarea id="lrdi_para4" name="lrdi_para4" class="passage-input" placeholder="Paste the text for LRDI Set 4 here..."></textarea>
-                 <div class="image-upload-area" id="image-area-4">
+                <textarea name="lrdi_para4" class="passage-input" placeholder="Paste the text for LRDI Set 4 here..."></textarea>
+                <div class="image-upload-area" id="image-area-4">
                     <label>Image for Set 4 (Optional)</label>
-                    <div class="image-drop-zone">
-                        <p>Drag & Drop, Paste, or Click to Select</p>
+                    <div class="image-drop-zone" tabindex="0">
+                        <div class="upload-icon">📁</div>
+                        <p>Drop image, click here, or paste (Ctrl+V)</p>
                     </div>
-                    <button type="button" class="paste-btn">Paste from Clipboard</button>
-                    <input type="file" class="file-input" accept="image/png, image/jpeg">
-                    <img class="image-preview" alt="Image preview for Set 4">
+                    <input type="file" class="file-input" accept="image/*">
+                    <img class="image-preview">
+                    <div class="file-info"></div>
                 </div>
                 <div class="questions-grid">
                     <div class="qa-pair"><label for="lrdi_q16">Question 16</label><textarea id="lrdi_q16" name="lrdi_q16"></textarea><label for="lrdi_a16" class="answer-label">Answer for Q16</label><textarea id="lrdi_a16" name="lrdi_a16"></textarea></div>
@@ -189,174 +393,1205 @@
                 </div>
             </div>
 
+            <!-- QA SECTION -->
+            <h2 class="section-title">QA Section</h2>
+            <p class="hint">(Questions 1-22)</p>
+            
+            <div class="passage-block">
+                <h3>Quantitative Ability Questions</h3>
+                
+                <div class="qa-single-question">
+                    <h4>QA Question 1</h4>
+                    <label for="qa_q1">Question 1</label>
+                    <textarea id="qa_q1" name="qa_q1" placeholder="Enter question 1 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-1">
+                        <label>Image for Question 1 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a1" class="answer-label">Answer for Q1</label>
+                    <textarea id="qa_a1" name="qa_a1" placeholder="Enter answer for question 1..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 2</h4>
+                    <label for="qa_q2">Question 2</label>
+                    <textarea id="qa_q2" name="qa_q2" placeholder="Enter question 2 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-2">
+                        <label>Image for Question 2 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a2" class="answer-label">Answer for Q2</label>
+                    <textarea id="qa_a2" name="qa_a2" placeholder="Enter answer for question 2..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 3</h4>
+                    <label for="qa_q3">Question 3</label>
+                    <textarea id="qa_q3" name="qa_q3" placeholder="Enter question 3 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-3">
+                        <label>Image for Question 3 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a3" class="answer-label">Answer for Q3</label>
+                    <textarea id="qa_a3" name="qa_a3" placeholder="Enter answer for question 3..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 4</h4>
+                    <label for="qa_q4">Question 4</label>
+                    <textarea id="qa_q4" name="qa_q4" placeholder="Enter question 4 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-4">
+                        <label>Image for Question 4 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a4" class="answer-label">Answer for Q4</label>
+                    <textarea id="qa_a4" name="qa_a4" placeholder="Enter answer for question 4..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 5</h4>
+                    <label for="qa_q5">Question 5</label>
+                    <textarea id="qa_q5" name="qa_q5" placeholder="Enter question 5 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-5">
+                        <label>Image for Question 5 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a5" class="answer-label">Answer for Q5</label>
+                    <textarea id="qa_a5" name="qa_a5" placeholder="Enter answer for question 5..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 6</h4>
+                    <label for="qa_q6">Question 6</label>
+                    <textarea id="qa_q6" name="qa_q6" placeholder="Enter question 6 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-6">
+                        <label>Image for Question 6 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a6" class="answer-label">Answer for Q6</label>
+                    <textarea id="qa_a6" name="qa_a6" placeholder="Enter answer for question 6..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 7</h4>
+                    <label for="qa_q7">Question 7</label>
+                    <textarea id="qa_q7" name="qa_q7" placeholder="Enter question 7 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-7">
+                        <label>Image for Question 7 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a7" class="answer-label">Answer for Q7</label>
+                    <textarea id="qa_a7" name="qa_a7" placeholder="Enter answer for question 7..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 8</h4>
+                    <label for="qa_q8">Question 8</label>
+                    <textarea id="qa_q8" name="qa_q8" placeholder="Enter question 8 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-8">
+                        <label>Image for Question 8 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a8" class="answer-label">Answer for Q8</label>
+                    <textarea id="qa_a8" name="qa_a8" placeholder="Enter answer for question 8..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 9</h4>
+                    <label for="qa_q9">Question 9</label>
+                    <textarea id="qa_q9" name="qa_q9" placeholder="Enter question 9 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-9">
+                        <label>Image for Question 9 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a9" class="answer-label">Answer for Q9</label>
+                    <textarea id="qa_a9" name="qa_a9" placeholder="Enter answer for question 9..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 10</h4>
+                    <label for="qa_q10">Question 10</label>
+                    <textarea id="qa_q10" name="qa_q10" placeholder="Enter question 10 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-10">
+                        <label>Image for Question 10 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a10" class="answer-label">Answer for Q10</label>
+                    <textarea id="qa_a10" name="qa_a10" placeholder="Enter answer for question 10..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 11</h4>
+                    <label for="qa_q11">Question 11</label>
+                    <textarea id="qa_q11" name="qa_q11" placeholder="Enter question 11 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-11">
+                        <label>Image for Question 11 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a11" class="answer-label">Answer for Q11</label>
+                    <textarea id="qa_a11" name="qa_a11" placeholder="Enter answer for question 11..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 12</h4>
+                    <label for="qa_q12">Question 12</label>
+                    <textarea id="qa_q12" name="qa_q12" placeholder="Enter question 12 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-12">
+                        <label>Image for Question 12 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a12" class="answer-label">Answer for Q12</label>
+                    <textarea id="qa_a12" name="qa_a12" placeholder="Enter answer for question 12..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 13</h4>
+                    <label for="qa_q13">Question 13</label>
+                    <textarea id="qa_q13" name="qa_q13" placeholder="Enter question 13 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-13">
+                        <label>Image for Question 13 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a13" class="answer-label">Answer for Q13</label>
+                    <textarea id="qa_a13" name="qa_a13" placeholder="Enter answer for question 13..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 14</h4>
+                    <label for="qa_q14">Question 14</label>
+                    <textarea id="qa_q14" name="qa_q14" placeholder="Enter question 14 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-14">
+                        <label>Image for Question 14 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a14" class="answer-label">Answer for Q14</label>
+                    <textarea id="qa_a14" name="qa_a14" placeholder="Enter answer for question 14..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 15</h4>
+                    <label for="qa_q15">Question 15</label>
+                    <textarea id="qa_q15" name="qa_q15" placeholder="Enter question 15 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-15">
+                        <label>Image for Question 15 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a15" class="answer-label">Answer for Q15</label>
+                    <textarea id="qa_a15" name="qa_a15" placeholder="Enter answer for question 15..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 16</h4>
+                    <label for="qa_q16">Question 16</label>
+                    <textarea id="qa_q16" name="qa_q16" placeholder="Enter question 16 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-16">
+                        <label>Image for Question 16 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a16" class="answer-label">Answer for Q16</label>
+                    <textarea id="qa_a16" name="qa_a16" placeholder="Enter answer for question 16..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 17</h4>
+                    <label for="qa_q17">Question 17</label>
+                    <textarea id="qa_q17" name="qa_q17" placeholder="Enter question 17 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-17">
+                        <label>Image for Question 17 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a17" class="answer-label">Answer for Q17</label>
+                    <textarea id="qa_a17" name="qa_a17" placeholder="Enter answer for question 17..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 18</h4>
+                    <label for="qa_q18">Question 18</label>
+                    <textarea id="qa_q18" name="qa_q18" placeholder="Enter question 18 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-18">
+                        <label>Image for Question 18 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a18" class="answer-label">Answer for Q18</label>
+                    <textarea id="qa_a18" name="qa_a18" placeholder="Enter answer for question 18..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 19</h4>
+                    <label for="qa_q19">Question 19</label>
+                    <textarea id="qa_q19" name="qa_q19" placeholder="Enter question 19 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-19">
+                        <label>Image for Question 19 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a19" class="answer-label">Answer for Q19</label>
+                    <textarea id="qa_a19" name="qa_a19" placeholder="Enter answer for question 19..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 20</h4>
+                    <label for="qa_q20">Question 20</label>
+                    <textarea id="qa_q20" name="qa_q20" placeholder="Enter question 20 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-20">
+                        <label>Image for Question 20 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a20" class="answer-label">Answer for Q20</label>
+                    <textarea id="qa_a20" name="qa_a20" placeholder="Enter answer for question 20..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 21</h4>
+                    <label for="qa_q21">Question 21</label>
+                    <textarea id="qa_q21" name="qa_q21" placeholder="Enter question 21 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-21">
+                        <label>Image for Question 21 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a21" class="answer-label">Answer for Q21</label>
+                    <textarea id="qa_a21" name="qa_a21" placeholder="Enter answer for question 21..."></textarea>
+                </div>
+
+                <div class="qa-single-question">
+                    <h4>QA Question 22</h4>
+                    <label for="qa_q22">Question 22</label>
+                    <textarea id="qa_q22" name="qa_q22" placeholder="Enter question 22 here..."></textarea>
+                    <div class="image-upload-area" id="qa-image-area-22">
+                        <label>Image for Question 22 (Optional)</label>
+                        <div class="image-drop-zone" tabindex="0">
+                            <div class="upload-icon">📁</div>
+                            <p>Drop image, click here, or paste (Ctrl+V)</p>
+                        </div>
+                        <input type="file" class="file-input" accept="image/*">
+                        <img class="image-preview">
+                        <div class="file-info"></div>
+                    </div>
+                    <label for="qa_a22" class="answer-label">Answer for Q22</label>
+                    <textarea id="qa_a22" name="qa_a22" placeholder="Enter answer for question 22..."></textarea>
+                </div>
+            </div>
+
             <button type="submit" class="submit-btn">Begin Analysis & Generate PDF</button>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="progress-text" id="progress-text">Preparing submission...</div>
+            </div>
+            
             <p id="status-message"></p>
         </form>
     </div>
 
+    <!-- Modal for Name and Code Input -->
+    <div id="submission-modal" class="modal">
+        <div class="modal-content">
+            <h3>📋 Question Paper Details</h3>
+            <label for="paper-name">Question Paper Name</label>
+            <input type="text" id="paper-name" placeholder="e.g., Question Paper 1" required>
+            
+            <label for="paper-code" style="margin-top: 15px;">Question Paper Code</label>
+            <input type="text" id="paper-code" placeholder="e.g., 2401" required>
+            
+            <div class="modal-buttons">
+                <button type="button" class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                <button type="button" class="modal-btn submit" onclick="proceedWithSubmission()">Submit & Analyze</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
-        // --- 1. Motivating Typewriter Greeting ---
-        const greetingElement = document.getElementById('greeting');
-        const greetingText = "Hello rv, let's conquer this.";
-        let i = 0;
-        function typeWriter() {
-            if (i < greetingText.length) {
-                greetingElement.innerHTML = greetingText.substring(0, i + 1);
-                i++;
-                setTimeout(typeWriter, 90);
-            } else {
-                greetingElement.style.borderRight = 'none';
-            }
-        }
-        window.addEventListener('load', typeWriter);
-
-        // --- 2. Supabase Integration & Form Logic ---
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-        
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        const form = document.getElementById('main-form');
-        const statusMessage = document.getElementById('status-message');
-        
-        // --- 3. REWRITTEN & FIXED Image Handling Logic ---
-        let imageFilesToUpload = {}; // Store files to be uploaded, keyed by area ID
-
-        document.querySelectorAll('.image-upload-area').forEach(area => {
-            const dropZone = area.querySelector('.image-drop-zone');
-            const fileInput = area.querySelector('.file-input');
-            const pasteBtn = area.querySelector('.paste-btn');
-            const previewImg = area.querySelector('.image-preview');
-
-            // Store the file object when handled
-            const handleFile = (file) => {
-                if (!file || !file.type.startsWith('image/')) {
-                    alert("Please select a valid image file.");
-                    return;
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. Motivating Typewriter Greeting ---
+            const greetingElement = document.getElementById('greeting');
+            const greetingText = "Hello rv, let's conquer this.";
+            let i = 0;
+            function typeWriter() {
+                if (i < greetingText.length) {
+                    greetingElement.innerHTML = greetingText.substring(0, i + 1);
+                    i++;
+                    setTimeout(typeWriter, 90);
+                } else {
+                    greetingElement.style.borderRight = 'none';
                 }
-                imageFilesToUpload[area.id] = file;
+            }
+            typeWriter();
 
-                // Show preview
-                const reader = new FileReader();
-                reader.onload = () => {
-                    previewImg.src = reader.result;
-                    previewImg.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
+            // --- 2. Toast Notification System ---
+            function showToast(message, type = 'info') {
+                const toastContainer = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span>${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</span>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                toastContainer.appendChild(toast);
+                
+                // Show toast
+                setTimeout(() => toast.classList.add('show'), 100);
+                
+                // Hide and remove toast
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toastContainer.removeChild(toast), 300);
+                }, 3000);
+            }
+
+            // --- 3. Test Data Generation ---
+            window.fillTestData = function() {
+                showToast('Filling form with test data...', 'info');
+                
+                // VARC Test Data
+                document.getElementById('passage1').value = "This is a sample passage about climate change and its impact on global ecosystems. Scientists have observed significant changes in weather patterns over the past decade, leading to concerns about long-term environmental sustainability.";
+                document.getElementById('q1').value = "What is the main topic of this passage?";
+                document.getElementById('a1').value = "Climate change and its impact on global ecosystems";
+                document.getElementById('q2').value = "According to the passage, what have scientists observed?";
+                document.getElementById('a2').value = "Significant changes in weather patterns over the past decade";
+                
+                document.getElementById('passage2').value = "Technology has revolutionized the way we communicate, work, and live. From smartphones to artificial intelligence, these innovations have created new opportunities while also presenting unique challenges for society.";
+                document.getElementById('q5').value = "How has technology affected human life according to the passage?";
+                document.getElementById('a5').value = "It has revolutionized communication, work, and daily life";
+                
+                // Verbal Ability Test Data
+                document.getElementById('q17').value = "Choose the correct synonym for 'Ubiquitous': A) Rare B) Omnipresent C) Limited D) Specific";
+                document.getElementById('a17').value = "B) Omnipresent";
+                document.getElementById('q18').value = "Complete the analogy: Book is to Reading as Fork is to ___";
+                document.getElementById('a18').value = "Eating";
+                
+                // LRDI Test Data
+                document.querySelector('textarea[name="lrdi_para1"]').value = "A company has 5 departments: HR, Finance, IT, Marketing, and Operations. The table below shows the number of employees in each department and their average salaries.";
+                document.getElementById('lrdi_q1').value = "Which department has the highest number of employees?";
+                document.getElementById('lrdi_a1').value = "Operations";
+                document.getElementById('lrdi_q2').value = "What is the total salary expenditure for the IT department?";
+                document.getElementById('lrdi_a2').value = "$500,000";
+                
+                document.querySelector('textarea[name="lrdi_para2"]').value = "A survey was conducted among 1000 students to understand their preferred subjects. Mathematics was chosen by 300 students, Science by 250 students, English by 200 students, and History by 150 students.";
+                document.getElementById('lrdi_q6').value = "What percentage of students prefer Mathematics?";
+                document.getElementById('lrdi_a6').value = "30%";
+                
+                // QA Test Data
+                document.getElementById('qa_q1').value = "If x + y = 10 and x - y = 4, find the value of x.";
+                document.getElementById('qa_a1').value = "x = 7";
+                document.getElementById('qa_q2').value = "A rectangle has length 12 cm and width 8 cm. What is its area?";
+                document.getElementById('qa_a2').value = "96 cm²";
+                document.getElementById('qa_q3').value = "If 25% of a number is 50, what is the number?";
+                document.getElementById('qa_a3').value = "200";
+                document.getElementById('qa_q4').value = "Find the compound interest on $1000 for 2 years at 5% per annum.";
+                document.getElementById('qa_a4').value = "$102.50";
+                document.getElementById('qa_q5').value = "A train travels 240 km in 3 hours. What is its average speed?";
+                document.getElementById('qa_a5').value = "80 km/h";
+                
+                showToast('Test data filled successfully!', 'success');
+                
+                // Scroll to top to see the filled data
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // Event listener for the drop zone (click to select file)
-            dropZone.addEventListener('click', () => fileInput.click());
-
-            // Event listener for the actual file input
-            fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
-
-            // Event listeners for drag and drop
-            dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-            dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-            dropZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('dragover');
-                handleFile(e.dataTransfer.files[0]);
-            });
-
-            // Event listener for the "Paste from Clipboard" button
-            pasteBtn.addEventListener('click', async () => {
+            // --- 4. Export Data Functionality ---
+            window.exportData = function() {
                 try {
-                    // Check for permission first
-                    const permission = await navigator.permissions.query({ name: 'clipboard-read' });
-                    if (permission.state === 'denied') {
-                        throw new Error('Clipboard permission denied. Please enable it in your browser settings.');
+                    const formData = new FormData(document.getElementById('main-form'));
+                    const exportData = {
+                        timestamp: new Date().toISOString(),
+                        version: "1.0",
+                        data: {}
+                    };
+                    
+                    // Collect all form data
+                    for (let [key, value] of formData.entries()) {
+                        exportData.data[key] = value;
                     }
                     
-                    const clipboardItems = await navigator.clipboard.read();
-                    let foundImage = false;
-                    for (const item of clipboardItems) {
-                        const imageType = item.types.find(type => type.startsWith('image/'));
-                        if (imageType) {
-                            const blob = await item.getType(imageType);
-                            // Give it a default name for Supabase upload
-                            const fileName = `pasted-image-${Date.now()}.png`;
-                            const file = new File([blob], fileName, { type: blob.type });
-                            handleFile(file);
-                            foundImage = true;
-                            break;
-                        }
-                    }
-                    if (!foundImage) alert('No image found on the clipboard.');
-
-                } catch (err) {
-                    console.error('Clipboard API error:', err);
-                    statusMessage.textContent = err.message || 'Could not access clipboard.';
-                    statusMessage.style.color = '#ff6b6b';
+                    // Create and download file
+                    const dataStr = JSON.stringify(exportData, null, 2);
+                    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                    
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(dataBlob);
+                    link.download = `question_paper_backup_${new Date().toISOString().split('T')[0]}.json`;
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    showToast('Data exported successfully!', 'success');
+                } catch (error) {
+                    console.error('Export error:', error);
+                    showToast('Error exporting data: ' + error.message, 'error');
                 }
-            });
-        });
-
-
-        // --- 4. Main Form Submission Handler ---
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
-                statusMessage.textContent = 'ERROR: Please configure your Supabase credentials.';
-                statusMessage.style.color = '#ff6b6b';
-                return;
-            }
-
-            statusMessage.textContent = 'Uploading images...';
-            statusMessage.style.color = 'var(--secondary-accent)';
-
-            const uploadedImageUrls = {};
-            for (const areaId in imageFilesToUpload) {
-                const file = imageFilesToUpload[areaId];
-                const fileName = `${Date.now()}-${file.name.replace(/\s/g, '_')}`;
-                
-                const { error } = await supabase.storage.from('lrdi_images').upload(fileName, file);
-                if (error) {
-                    statusMessage.textContent = `Image upload failed: ${error.message}`;
-                    statusMessage.style.color = '#ff6b6b'; return;
-                }
-                
-                const { data } = supabase.storage.from('lrdi_images').getPublicUrl(fileName);
-                uploadedImageUrls[areaId] = data.publicUrl;
-            }
-
-            statusMessage.textContent = 'Submitting data to the analysis queue...';
-            const formData = new FormData(form);
-            const taskData = {
-                input_content: `
-[VARC_START]
-[PASSAGE_1]${formData.get('passage1')}[/PASSAGE_1][Q1]${formData.get('q1')}[/Q1][A1]${formData.get('a1')}[/A1][Q2]${formData.get('q2')}[/Q2][A2]${formData.get('a2')}[/A2][Q3]${formData.get('q3')}[/Q3][A3]${formData.get('a3')}[/A3][Q4]${formData.get('q4')}[/Q4][A4]${formData.get('a4')}[/A4]
-[PASSAGE_2]${formData.get('passage2')}[/PASSAGE_2][Q5]${formData.get('q5')}[/Q5][A5]${formData.get('a5')}[/A5][Q6]${formData.get('q6')}[/Q6][A6]${formData.get('a6')}[/A6][Q7]${formData.get('q7')}[/Q7][A7]${formData.get('a7')}[/A7][Q8]${formData.get('q8')}[/Q8][A8]${formData.get('a8')}[/A8]
-[PASSAGE_3]${formData.get('passage3')}[/PASSAGE_3][Q9]${formData.get('q9')}[/Q9][A9]${formData.get('a9')}[/A9][Q10]${formData.get('q10')}[/Q10][A10]${formData.get('a10')}[/A10][Q11]${formData.get('q11')}[/Q11][A11]${formData.get('a11')}[/A11][Q12]${formData.get('q12')}[/Q12][A12]${formData.get('a12')}[/A12]
-[PASSAGE_4]${formData.get('passage4')}[/PASSAGE_4][Q13]${formData.get('q13')}[/Q13][A13]${formData.get('a13')}[/A13][Q14]${formData.get('q14')}[/Q14][A14]${formData.get('a14')}[/A14][Q15]${formData.get('q15')}[/Q15][A15]${formData.get('a15')}[/A15][Q16]${formData.get('q16')}[/Q16][A16]${formData.get('a16')}[/A16]
-[Q17]${formData.get('q17')}[/Q17][A17]${formData.get('a17')}[/A17][Q18]${formData.get('q18')}[/Q18][A18]${formData.get('a18')}[/A18][Q19]${formData.get('q19')}[/Q19][A19]${formData.get('a19')}[/A19][Q20]${formData.get('q20')}[/Q20][A20]${formData.get('a20')}[/A20][Q21]${formData.get('q21')}[/Q21][A21]${formData.get('a21')}[/A21][Q22]${formData.get('q22')}[/Q22][A22]${formData.get('a22')}[/A22][Q23]${formData.get('q23')}[/Q23][A23]${formData.get('a23')}[/A23][Q24]${formData.get('q24')}[/Q24][A24]${formData.get('a24')}[/A24]
-[VARC_END]
-[LRDI_START]
-[SET_1]${formData.get('lrdi_para1')}[/SET_1][IMAGE_1]${uploadedImageUrls['image-area-1'] || ''}[/IMAGE_1][LRDI_Q1]${formData.get('lrdi_q1')}[/LRDI_Q1][LRDI_A1]${formData.get('lrdi_a1')}[/LRDI_A1][LRDI_Q2]${formData.get('lrdi_q2')}[/LRDI_Q2][LRDI_A2]${formData.get('lrdi_a2')}[/LRDI_A2][LRDI_Q3]${formData.get('lrdi_q3')}[/LRDI_Q3][LRDI_A3]${formData.get('lrdi_a3')}[/LRDI_A3][LRDI_Q4]${formData.get('lrdi_q4')}[/LRDI_Q4][LRDI_A4]${formData.get('lrdi_a4')}[/LRDI_A4][LRDI_Q5]${formData.get('lrdi_q5')}[/LRDI_Q5][LRDI_A5]${formData.get('lrdi_a5')}[/LRDI_A5]
-[SET_2]${formData.get('lrdi_para2')}[/SET_2][IMAGE_2]${uploadedImageUrls['image-area-2'] || ''}[/IMAGE_2][LRDI_Q6]${formData.get('lrdi_q6')}[/LRDI_Q6][LRDI_A6]${formData.get('lrdi_a6')}[/LRDI_A6][LRDI_Q7]${formData.get('lrdi_q7')}[/LRDI_Q7][LRDI_A7]${formData.get('lrdi_a7')}[/LRDI_A7][LRDI_Q8]${formData.get('lrdi_q8')}[/LRDI_Q8][LRDI_A8]${formData.get('lrdi_a8')}[/LRDI_A8][LRDI_Q9]${formData.get('lrdi_q9')}[/LRDI_Q9][LRDI_A9]${formData.get('lrdi_a9')}[/LRDI_A9][LRDI_Q10]${formData.get('lrdi_q10')}[/LRDI_Q10][LRDI_A10]${formData.get('lrdi_a10')}[/LRDI_A10]
-[SET_3]${formData.get('lrdi_para3')}[/SET_3][IMAGE_3]${uploadedImageUrls['image-area-3'] || ''}[/IMAGE_3][LRDI_Q11]${formData.get('lrdi_q11')}[/LRDI_Q11][LRDI_A11]${formData.get('lrdi_a11')}[/LRDI_A11][LRDI_Q12]${formData.get('lrdi_q12')}[/LRDI_Q12][LRDI_A12]${formData.get('lrdi_a12')}[/LRDI_A12][LRDI_Q13]${formData.get('lrdi_q13')}[/LRDI_Q13][LRDI_A13]${formData.get('lrdi_a13')}[/LRDI_A13][LRDI_Q14]${formData.get('lrdi_q14')}[/LRDI_Q14][LRDI_A14]${formData.get('lrdi_a14')}[/LRDI_A14][LRDI_Q15]${formData.get('lrdi_q15')}[/LRDI_Q15][LRDI_A15]${formData.get('lrdi_a15')}[/LRDI_A15]
-[SET_4]${formData.get('lrdi_para4')}[/SET_4][IMAGE_4]${uploadedImageUrls['image-area-4'] || ''}[/IMAGE_4][LRDI_Q16]${formData.get('lrdi_q16')}[/LRDI_Q16][LRDI_A16]${formData.get('lrdi_a16')}[/LRDI_A16][LRDI_Q17]${formData.get('lrdi_q17')}[/LRDI_Q17][LRDI_A17]${formData.get('lrdi_a17')}[/LRDI_A17][LRDI_Q18]${formData.get('lrdi_q18')}[/LRDI_Q18][LRDI_A18]${formData.get('lrdi_a18')}[/LRDI_A18][LRDI_Q19]${formData.get('lrdi_q19')}[/LRDI_Q19][LRDI_A19]${formData.get('lrdi_a19')}[/LRDI_A19][LRDI_Q20]${formData.get('lrdi_q20')}[/LRDI_Q20][LRDI_A20]${formData.get('lrdi_a20')}[/LRDI_A20]
-[LRDI_END]
-                `,
-                status: 'pending'
             };
 
-            try {
-                const { data, error } = await supabase.from('tasks').insert([taskData]);
-                if (error) throw error;
-                statusMessage.textContent = 'Success! Your analysis request has been queued.';
-                statusMessage.style.color = 'var(--secondary-accent)';
-                form.reset();
-                document.querySelectorAll('.image-preview').forEach(img => {img.src=''; img.style.display='none'});
-                imageFilesToUpload = {};
-            } catch (error) {
-                statusMessage.textContent = `Submission failed: ${error.message}`;
-                statusMessage.style.color = '#ff6b6b';
-                console.error('Error submitting to Supabase:', error);
+            // --- 5. Import Data Functionality ---
+            window.triggerImport = function() {
+                document.getElementById('import-file-input').click();
+            };
+
+            window.importData = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                if (!file.name.endsWith('.json')) {
+                    showToast('Please select a valid JSON file', 'error');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        
+                        if (!importedData.data) {
+                            throw new Error('Invalid file format');
+                        }
+                        
+                        // Clear existing data first
+                        document.getElementById('main-form').reset();
+                        
+                        // Fill form with imported data
+                        Object.entries(importedData.data).forEach(([key, value]) => {
+                            const element = document.querySelector(`[name="${key}"]`);
+                            if (element) {
+                                element.value = value;
+                            }
+                        });
+                        
+                        showToast(`Data imported successfully! (${Object.keys(importedData.data).length} fields restored)`, 'success');
+                        
+                        // Scroll to top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        
+                    } catch (error) {
+                        console.error('Import error:', error);
+                        showToast('Error importing data: ' + error.message, 'error');
+                    }
+                };
+                
+                reader.readAsText(file);
+                
+                // Reset file input
+                event.target.value = '';
+            };
+
+            // --- 6. Clear All Data ---
+            window.clearAllData = function() {
+                if (confirm('⚠️ Are you sure you want to clear all data? This action cannot be undone.')) {
+                    document.getElementById('main-form').reset();
+                    
+                    // Clear all image previews
+                    document.querySelectorAll('.image-preview').forEach(img => {
+                        img.src = '';
+                        img.classList.remove('visible');
+                    });
+                    
+                    document.querySelectorAll('.file-info').forEach(info => {
+                        info.classList.remove('visible');
+                    });
+                    
+                    document.querySelectorAll('.image-drop-zone').forEach(zone => {
+                        zone.classList.remove('has-image');
+                        zone.querySelector('p').textContent = 'Drop image, click here, or paste (Ctrl+V)';
+                    });
+                    
+                    // Clear stored files
+                    Object.keys(imageFilesToUpload).forEach(key => {
+                        delete imageFilesToUpload[key];
+                    });
+                    
+                    showToast('All data cleared successfully!', 'success');
+                }
+            };
+
+            // --- 7. Auto-save functionality (saves to localStorage) ---
+            function autoSave() {
+                try {
+                    const formData = new FormData(document.getElementById('main-form'));
+                    const saveData = {};
+                    
+                    for (let [key, value] of formData.entries()) {
+                        if (value.trim()) { // Only save non-empty values
+                            saveData[key] = value;
+                        }
+                    }
+                    
+                    localStorage.setItem('questionPaperAutoSave', JSON.stringify({
+                        timestamp: new Date().toISOString(),
+                        data: saveData
+                    }));
+                } catch (error) {
+                    console.log('Auto-save failed:', error);
+                }
             }
+
+            // Auto-save every 30 seconds
+            setInterval(autoSave, 30000);
+
+            // Load auto-saved data on page load
+            try {
+                const autoSavedData = localStorage.getItem('questionPaperAutoSave');
+                if (autoSavedData) {
+                    const parsed = JSON.parse(autoSavedData);
+                    const timeDiff = new Date() - new Date(parsed.timestamp);
+                    
+                    // Only restore if less than 24 hours old
+                    if (timeDiff < 24 * 60 * 60 * 1000) {
+                        if (confirm('Auto-saved data found. Would you like to restore it?')) {
+                            Object.entries(parsed.data).forEach(([key, value]) => {
+                                const element = document.querySelector(`[name="${key}"]`);
+                                if (element) {
+                                    element.value = value;
+                                }
+                            });
+                            showToast('Auto-saved data restored!', 'success');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log('Error loading auto-saved data:', error);
+            }
+
+            // --- 8. Supabase Integration & Form Logic ---
+            const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+            const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+            
+            // Fixed Supabase initialization
+            let supabaseClient = null;
+            if (window.supabase && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+
+            const form = document.getElementById('main-form');
+            const statusMessage = document.getElementById('status-message');
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            
+            // --- 9. Image Compression Function ---
+            function compressImage(file, maxWidth = 1200, quality = 0.8) {
+                return new Promise((resolve) => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    const img = new Image();
+                    
+                    img.onload = () => {
+                        // Calculate new dimensions
+                        let { width, height } = img;
+                        if (width > maxWidth) {
+                            height = (height * maxWidth) / width;
+                            width = maxWidth;
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        
+                        // Draw and compress
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        canvas.toBlob((compressedBlob) => {
+                            // Create a new file with original name
+                            const compressedFile = new File([compressedBlob], file.name, {
+                                type: 'image/jpeg',
+                                lastModified: Date.now()
+                            });
+                            resolve(compressedFile);
+                        }, 'image/jpeg', quality);
+                    };
+                    
+                    img.src = URL.createObjectURL(file);
+                });
+            }
+
+            // --- 10. Image Handling Logic ---
+            const imageFilesToUpload = {};
+
+            function createFileList(files) {
+                const dt = new DataTransfer();
+                files.forEach(file => dt.items.add(file));
+                return dt.files;
+            }
+
+            async function processFile(file, uploadArea) {
+                console.log(`Processing file: ${file.name}, Type: ${file.type}, Size: ${file.size}`);
+                
+                if (!file.type.startsWith('image/')) {
+                    console.log('File is not an image, skipping');
+                    return false;
+                }
+
+                const dropZone = uploadArea.querySelector('.image-drop-zone');
+                const previewImg = uploadArea.querySelector('.image-preview');
+                const fileInfo = uploadArea.querySelector('.file-info');
+                
+                // Compress image before storing
+                const originalSize = file.size;
+                const compressedFile = await compressImage(file);
+                const compressedSize = compressedFile.size;
+                const compressionRatio = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
+                
+                console.log(`Image compressed: ${originalSize} → ${compressedSize} bytes (${compressionRatio}% reduction)`);
+                
+                // Store the compressed file for later upload
+                imageFilesToUpload[uploadArea.id] = compressedFile;
+
+                // Use FileReader to show a preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    previewImg.classList.add('visible');
+                    
+                    // Update UI
+                    dropZone.classList.add('has-image');
+                    dropZone.querySelector('p').textContent = `Image loaded: ${file.name}`;
+                    
+                    // Show file info with compression details
+                    fileInfo.textContent = `📷 ${file.name} (${(compressedSize / 1024).toFixed(1)} KB, ${compressionRatio}% compressed)`;
+                    fileInfo.classList.add('visible');
+                    
+                    console.log(`Preview loaded for ${file.name}`);
+                };
+                reader.onerror = function() {
+                    console.log('Error reading file');
+                };
+                reader.readAsDataURL(compressedFile);
+                return true;
+            }
+
+            // Initialize each upload area
+            document.querySelectorAll('.image-upload-area').forEach(uploadArea => {
+                const dropZone = uploadArea.querySelector('.image-drop-zone');
+                const fileInput = uploadArea.querySelector('.file-input');
+                
+                console.log(`Initializing upload area: ${uploadArea.id}`);
+
+                // File Input Change Handler
+                fileInput.addEventListener('change', async function(e) {
+                    console.log('File input change event triggered');
+                    const file = this.files[0];
+                    if (file) {
+                        await processFile(file, uploadArea);
+                    } else {
+                        console.log('No file selected in change event');
+                    }
+                });
+
+                // Click Handler
+                dropZone.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Drop zone clicked, opening file dialog');
+                    fileInput.click();
+                });
+
+                // Drag Events
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                });
+
+                dropZone.addEventListener('dragenter', function(e) {
+                    console.log('Drag enter');
+                    this.classList.add('drag-over');
+                });
+
+                dropZone.addEventListener('dragover', function(e) {
+                    this.classList.add('drag-over');
+                });
+
+                dropZone.addEventListener('dragleave', function(e) {
+                    console.log('Drag leave');
+                    this.classList.remove('drag-over');
+                });
+
+                dropZone.addEventListener('drop', async function(e) {
+                    console.log('Drop event triggered');
+                    this.classList.remove('drag-over');
+                    
+                    const files = e.dataTransfer.files;
+                    console.log(`Dropped ${files.length} files`);
+                    
+                    if (files.length > 0) {
+                        const file = files[0];
+                        console.log(`Processing dropped file: ${file.name}`);
+                        
+                        fileInput.files = createFileList([file]);
+                        await processFile(file, uploadArea);
+                    }
+                });
+
+                // Paste Event Handler
+                dropZone.addEventListener('paste', async function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Paste event on drop zone');
+                    
+                    const items = e.clipboardData.items;
+                    console.log(`Clipboard has ${items.length} items`);
+                    
+                    for (let i = 0; i < items.length; i++) {
+                        const item = items[i];
+                        console.log(`Item ${i}: kind=${item.kind}, type=${item.type}`);
+                        
+                        if (item.kind === 'file' && item.type.startsWith('image/')) {
+                            const file = item.getAsFile();
+                            if (file) {
+                                console.log(`Pasted image file: ${file.name || 'clipboard-image'}`);
+                                
+                                const fileName = file.name || `clipboard-image-${Date.now()}.png`;
+                                const namedFile = new File([file], fileName, { type: file.type });
+                                
+                                fileInput.files = createFileList([namedFile]);
+                                await processFile(namedFile, uploadArea);
+                                break;
+                            }
+                        }
+                    }
+                });
+
+                dropZone.addEventListener('focus', function() {
+                    console.log(`Drop zone focused: ${uploadArea.id}`);
+                });
+            });
+
+            // Global Paste Handler
+            document.addEventListener('paste', function(e) {
+                if (e.target.classList.contains('image-drop-zone')) {
+                    return;
+                }
+                
+                console.log('Global paste event detected');
+                const items = e.clipboardData.items;
+                
+                for (let i = 0; i < items.length; i++) {
+                    const item = items[i];
+                    if (item.kind === 'file' && item.type.startsWith('image/')) {
+                        e.preventDefault();
+                        console.log('Image found in global paste, redirecting to first drop zone');
+                        
+                        const firstDropZone = document.querySelector('.image-drop-zone');
+                        if (firstDropZone) {
+                            firstDropZone.focus();
+                            const pasteEvent = new ClipboardEvent('paste', {
+                                clipboardData: e.clipboardData
+                            });
+                            firstDropZone.dispatchEvent(pasteEvent);
+                        }
+                        break;
+                    }
+                }
+            });
+
+            // --- 11. Modal Functions ---
+            window.openModal = function() {
+                document.getElementById('submission-modal').style.display = 'block';
+                document.getElementById('paper-name').focus();
+            };
+
+            window.closeModal = function() {
+                document.getElementById('submission-modal').style.display = 'none';
+            };
+
+            // --- 12. Progress Update Function ---
+            function updateProgress(percentage, text) {
+                progressBar.style.width = percentage + '%';
+                progressText.textContent = text;
+            }
+
+            // --- 13. Form Submission Handler ---
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                openModal();
+            });
+
+            // --- 14. Actual Submission Function WITH RLS FIX ---
+            window.proceedWithSubmission = async function() {
+                const paperName = document.getElementById('paper-name').value.trim();
+                const paperCode = document.getElementById('paper-code').value.trim();
+                
+                if (!paperName || !paperCode) {
+                    alert('Please enter both paper name and code');
+                    return;
+                }
+                
+                if (!supabaseClient) {
+                    statusMessage.textContent = 'ERROR: Please configure your Supabase credentials.';
+                    statusMessage.style.color = '#ff6b6b';
+                    closeModal();
+                    return;
+                }
+
+                closeModal();
+                progressContainer.style.display = 'block';
+                updateProgress(5, 'Starting submission...');
+
+                try {
+                    updateProgress(10, 'Preparing images for upload...');
+                    
+                    const uploadedImageUrls = {};
+                    const totalImages = Object.keys(imageFilesToUpload).length;
+                    let uploadedCount = 0;
+
+                    // Upload images with progress tracking
+                    for (const [areaId, file] of Object.entries(imageFilesToUpload)) {
+                        try {
+                            updateProgress(10 + (uploadedCount / totalImages) * 40, `Uploading image ${uploadedCount + 1}/${totalImages}...`);
+                            
+                            const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+                            const fileName = `${Date.now()}-${sanitizedFileName}`;
+                            
+                            const { data, error } = await supabaseClient.storage
+                                .from('question_images')
+                                .upload(fileName, file);
+                            
+                            if (error) {
+                                throw error;
+                            }
+                            
+                            const { data: urlData } = supabaseClient.storage
+                                .from('question_images')
+                                .getPublicUrl(fileName);
+                            
+                            uploadedImageUrls[areaId] = urlData.publicUrl;
+                            uploadedCount++;
+                            
+                        } catch (error) {
+                            console.error(`Error uploading image for ${areaId}:`, error);
+                            // Continue with other images, mark as no image
+                            uploadedImageUrls[areaId] = 'NO_IMAGE';
+                        }
+                    }
+
+                    updateProgress(50, 'Collecting form data...');
+                    
+                    const formData = new FormData(form);
+                    
+                    updateProgress(60, 'Structuring question data...');
+                    
+                    // Build structured data for better Supabase storage
+                    const questionPaperData = {
+                        paper_name: paperName,
+                        paper_code: paperCode,
+                        created_at: new Date().toISOString(),
+                        status: 'pending',
+                        
+                        // VARC Section
+                        varc_data: {
+                            passages: [
+                                {
+                                    passage_number: 1,
+                                    passage_text: formData.get('passage1') || '',
+                                    questions: [
+                                        { question: formData.get('q1') || '', answer: formData.get('a1') || '' },
+                                        { question: formData.get('q2') || '', answer: formData.get('a2') || '' },
+                                        { question: formData.get('q3') || '', answer: formData.get('a3') || '' },
+                                        { question: formData.get('q4') || '', answer: formData.get('a4') || '' }
+                                    ]
+                                },
+                                {
+                                    passage_number: 2,
+                                    passage_text: formData.get('passage2') || '',
+                                    questions: [
+                                        { question: formData.get('q5') || '', answer: formData.get('a5') || '' },
+                                        { question: formData.get('q6') || '', answer: formData.get('a6') || '' },
+                                        { question: formData.get('q7') || '', answer: formData.get('a7') || '' },
+                                        { question: formData.get('q8') || '', answer: formData.get('a8') || '' }
+                                    ]
+                                },
+                                {
+                                    passage_number: 3,
+                                    passage_text: formData.get('passage3') || '',
+                                    questions: [
+                                        { question: formData.get('q9') || '', answer: formData.get('a9') || '' },
+                                        { question: formData.get('q10') || '', answer: formData.get('a10') || '' },
+                                        { question: formData.get('q11') || '', answer: formData.get('a11') || '' },
+                                        { question: formData.get('q12') || '', answer: formData.get('a12') || '' }
+                                    ]
+                                },
+                                {
+                                    passage_number: 4,
+                                    passage_text: formData.get('passage4') || '',
+                                    questions: [
+                                        { question: formData.get('q13') || '', answer: formData.get('a13') || '' },
+                                        { question: formData.get('q14') || '', answer: formData.get('a14') || '' },
+                                        { question: formData.get('q15') || '', answer: formData.get('a15') || '' },
+                                        { question: formData.get('q16') || '', answer: formData.get('a16') || '' }
+                                    ]
+                                }
+                            ],
+                            verbal_ability: [
+                                { question: formData.get('q17') || '', answer: formData.get('a17') || '' },
+                                { question: formData.get('q18') || '', answer: formData.get('a18') || '' },
+                                { question: formData.get('q19') || '', answer: formData.get('a19') || '' },
+                                { question: formData.get('q20') || '', answer: formData.get('a20') || '' },
+                                { question: formData.get('q21') || '', answer: formData.get('a21') || '' },
+                                { question: formData.get('q22') || '', answer: formData.get('a22') || '' },
+                                { question: formData.get('q23') || '', answer: formData.get('a23') || '' },
+                                { question: formData.get('q24') || '', answer: formData.get('a24') || '' }
+                            ]
+                        },
+                        
+                        // LRDI Section
+                        lrdi_data: {
+                            sets: [
+                                {
+                                    set_number: 1,
+                                    set_text: formData.get('lrdi_para1') || '',
+                                    image_url: uploadedImageUrls['image-area-1'] || 'NO_IMAGE',
+                                    questions: [
+                                        { question: formData.get('lrdi_q1') || '', answer: formData.get('lrdi_a1') || '' },
+                                        { question: formData.get('lrdi_q2') || '', answer: formData.get('lrdi_a2') || '' },
+                                        { question: formData.get('lrdi_q3') || '', answer: formData.get('lrdi_a3') || '' },
+                                        { question: formData.get('lrdi_q4') || '', answer: formData.get('lrdi_a4') || '' },
+                                        { question: formData.get('lrdi_q5') || '', answer: formData.get('lrdi_a5') || '' }
+                                    ]
+                                },
+                                {
+                                    set_number: 2,
+                                    set_text: formData.get('lrdi_para2') || '',
+                                    image_url: uploadedImageUrls['image-area-2'] || 'NO_IMAGE',
+                                    questions: [
+                                        { question: formData.get('lrdi_q6') || '', answer: formData.get('lrdi_a6') || '' },
+                                        { question: formData.get('lrdi_q7') || '', answer: formData.get('lrdi_a7') || '' },
+                                        { question: formData.get('lrdi_q8') || '', answer: formData.get('lrdi_a8') || '' },
+                                        { question: formData.get('lrdi_q9') || '', answer: formData.get('lrdi_a9') || '' },
+                                        { question: formData.get('lrdi_q10') || '', answer: formData.get('lrdi_a10') || '' }
+                                    ]
+                                },
+                                {
+                                    set_number: 3,
+                                    set_text: formData.get('lrdi_para3') || '',
+                                    image_url: uploadedImageUrls['image-area-3'] || 'NO_IMAGE',
+                                    questions: [
+                                        { question: formData.get('lrdi_q11') || '', answer: formData.get('lrdi_a11') || '' },
+                                        { question: formData.get('lrdi_q12') || '', answer: formData.get('lrdi_a12') || '' },
+                                        { question: formData.get('lrdi_q13') || '', answer: formData.get('lrdi_a13') || '' },
+                                        { question: formData.get('lrdi_q14') || '', answer: formData.get('lrdi_a14') || '' },
+                                        { question: formData.get('lrdi_q15') || '', answer: formData.get('lrdi_a15') || '' }
+                                    ]
+                                },
+                                {
+                                    set_number: 4,
+                                    set_text: formData.get('lrdi_para4') || '',
+                                    image_url: uploadedImageUrls['image-area-4'] || 'NO_IMAGE',
+                                    questions: [
+                                        { question: formData.get('lrdi_q16') || '', answer: formData.get('lrdi_a16') || '' },
+                                        { question: formData.get('lrdi_q17') || '', answer: formData.get('lrdi_a17') || '' },
+                                        { question: formData.get('lrdi_q18') || '', answer: formData.get('lrdi_a18') || '' },
+                                        { question: formData.get('lrdi_q19') || '', answer: formData.get('lrdi_a19') || '' },
+                                        { question: formData.get('lrdi_q20') || '', answer: formData.get('lrdi_a20') || '' }
+                                    ]
+                                }
+                            ]
+                        },
+                        
+                        // QA Section
+                        qa_data: {
+                            questions: []
+                        }
+                    };
+                    
+                    // Build QA questions array
+                    for (let i = 1; i <= 22; i++) {
+                        questionPaperData.qa_data.questions.push({
+                            question_number: i,
+                            question: formData.get(`qa_q${i}`) || '',
+                            image_url: uploadedImageUrls[`qa-image-area-${i}`] || 'NO_IMAGE',
+                            answer: formData.get(`qa_a${i}`) || ''
+                        });
+                    }
+
+                    updateProgress(80, 'Saving to database...');
+                    
+                    // ****** FIX FOR RLS ERROR: Use 'minimal' returning option ******
+                    const { data, error } = await supabaseClient
+                        .from('question_papers')
+                        .insert([questionPaperData], { returning: 'minimal' });
+                    
+                    if (error) {
+                        console.error('Supabase insert error:', error);
+                        throw error;
+                    }
+                    
+                    updateProgress(100, 'Submission completed successfully!');
+                    
+                    statusMessage.textContent = `✅ Success! Question paper "${paperName}" (${paperCode}) has been saved and queued for analysis.`;
+                    statusMessage.style.color = 'var(--secondary-accent)';
+                    
+                    showToast('Question paper submitted successfully!', 'success');
+                    
+                    // Clear auto-saved data after successful submission
+                    localStorage.removeItem('questionPaperAutoSave');
+                    
+                    // Reset form after successful submission
+                    setTimeout(() => {
+                        form.reset();
+                        document.querySelectorAll('.image-preview').forEach(img => {
+                            img.src = '';
+                            img.classList.remove('visible');
+                        });
+                        document.querySelectorAll('.file-info').forEach(info => {
+                            info.classList.remove('visible');
+                        });
+                        document.querySelectorAll('.image-drop-zone').forEach(zone => {
+                            zone.classList.remove('has-image');
+                            zone.querySelector('p').textContent = 'Drop image, click here, or paste (Ctrl+V)';
+                        });
+                        
+                        // Clear stored files
+                        Object.keys(imageFilesToUpload).forEach(key => {
+                            delete imageFilesToUpload[key];
+                        });
+                        
+                        progressContainer.style.display = 'none';
+                        updateProgress(0, '');
+                    }, 3000);
+                    
+                } catch (error) {
+                    updateProgress(0, '');
+                    progressContainer.style.display = 'none';
+                    statusMessage.textContent = `❌ Submission failed: ${error.message}`;
+                    statusMessage.style.color = '#ff6b6b';
+                    showToast('Submission failed: ' + error.message, 'error');
+                    console.error('Error submitting to Supabase:', error);
+                }
+            };
+
+            console.log('Enhanced application initialized with RLS fix, test data, import/export, and auto-save features');
         });
     </script>
 </body>
